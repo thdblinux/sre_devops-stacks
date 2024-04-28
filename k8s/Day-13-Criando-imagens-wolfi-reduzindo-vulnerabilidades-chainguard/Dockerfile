@@ -1,5 +1,4 @@
 FROM python:3-slim as build
-ADD app /app
 WORKDIR /app
 RUN pip install -r /app/requirements.txt
 
