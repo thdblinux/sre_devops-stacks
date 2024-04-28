@@ -33,7 +33,13 @@ terraform/.terraform/providers/**
 # .tfstate files
 *.tfstate
 *.tfstate.*
-*.terraform.lock.hcl*
+
+
+# Ignore the Terraform lock file
+.terraform.lock.hcl
+
+# Ignore the Terraform directory and its contents
+.terraform/
 
 # Crash log files
 crash.log
