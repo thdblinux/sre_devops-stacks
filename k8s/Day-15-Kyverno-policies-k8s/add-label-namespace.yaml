@@ -1,0 +1,16 @@
+apiVersion: kyverno.io/v1
+kind: ClusterPolicy
+metadata:
+  name: add-label-namespace
+spec:
+  rules:
+  - name: add-label-ns
+    match:
+      resources:
+        kinds:
+        - Namespace
+    mutate:
+      patchStrategicMerge:
+        metadata:
+          labels:
+            Thadeu: "Lindo_Demais"
