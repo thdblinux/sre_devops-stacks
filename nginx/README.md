@@ -181,7 +181,7 @@ server {
     server_name localhost;
 
     location / {
-        
+        proxy_pass http://localhost;
     }
     error_page 404 400 401 /erro.html;
 }
