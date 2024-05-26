@@ -1,0 +1,18 @@
+apiVersion: eksctl.io/v1alpha5 # Versão da API do EKSCTL
+kind: ClusterConfig # Tipo de recurso que estamos criando
+
+metadata: # Metadados do recurso
+  name: eks-matrix # Nome do cluster
+  region: us-east-1 # Região onde o cluster será criado
+
+managedNodeGroups: # Node Groups que serão criados, estamos utilizando o tipo Managed Node Groups
+- name: eks-matrix-nodegroup # Nome do Node Group
+  instanceType: t3.medium # Tipo de instância que iremos utilizar para os Nodes Workers
+  desiredCapacity: 2 # Quantidade de Nodes Workers que iremos criar
+  minSize: 1 # Quantidade mínima de Nodes Workers que iremos criar
+  maxSize: 3 # Quantidade máxima de Nodes Workers que iremos criar
+
+## Edit add-on Configure Amazon VPC CNI
+
+## "enabeleNetworkPolicy": "true"
+## k get po -n kube-system 

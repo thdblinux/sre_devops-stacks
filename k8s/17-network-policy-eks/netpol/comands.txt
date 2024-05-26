@@ -1,0 +1,13 @@
+curl giropops-senhas.beskar.svc:5000
+curl redis-service.beskar.svc:6379
+redis-cli -h redis-service.beskar.svc ping
+k exec -ti alpine -n beskar -- sh 
+k logs -f -n
+k port-forward -n beskar svc/<service_name>5000:5000
+k run -ti alpine --image alpine -- sh
+k run -ti alpine --image alpine -n beskar -- sh
+k run -ti alpine -- sh
+k get ns --show-labels
+k get no --show-labels
+apk add redis
+apk add curl
