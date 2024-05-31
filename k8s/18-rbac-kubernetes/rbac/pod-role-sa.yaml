@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod-leitor
+  namespace: default
+spec:
+  serviceAccount: pod-leitor
+  containers:
+  - name: pod-leitor-test
+    image: alpine
+    command: ["sleep", "infinity"]
