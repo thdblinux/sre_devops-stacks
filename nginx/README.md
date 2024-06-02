@@ -46,17 +46,30 @@ vim index.html
 ```
 
 ```html
-<html>
-  <head>
-    <title>Docker nginx Tutorial</title>
-  </head>
+<!DOCTYPE html>
+<html lang="en" class="dark-mode">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOCKER NGINX</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
 
-  <body>
-    <div class="container">
-      <h1>This is the way!</h1>
-      <p>This Nginx page is brought to you by Docker</p>
-    </div>
-  </body>
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Jéssica! DOCKER NGINX*</h1>
+</body>
 </html>
 ```
 
@@ -186,3 +199,12 @@ server {
     error_page 404 400 401 /erro.html;
 }
 ```
+```sh
+cd /etc/nginx/
+```
+file: cd conf.d/default.conf | vim nginx.conf
+
+```sh
+cd /usr/share/nginx/html
+```
+file: index.html

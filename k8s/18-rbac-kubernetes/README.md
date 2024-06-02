@@ -62,7 +62,8 @@ No arquivo acima, estamos definindo as seguintes informações:
 - spec.request: Conteúdo do certificado em base64.
 - spec.signerName: Nome do assinador do certificado, que no caso é o - - -     kube-apiserver, que será o responsável por assinar o nosso certificado.
 - spec.expirationSeconds: Tempo de expiração do certificado, que no caso é de 1 ano.
-- spec.usages: Tipo de uso do certificado, que no caso é client auth.
+- spec.usages: Tipo de uso do certificado, que no caso é client auth.É importante para cenários onde o certificado será utilizado para identificar e autenticar clientes em sistemas de comunicação segura, como a autenticação de um usuário ou um serviço no Kubernetes.
+
 Agora que já temos o nosso arquivo criado, vamos aplicar ele no cluster:
 ```sh
 kubectl apply -f developer.yaml
