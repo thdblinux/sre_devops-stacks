@@ -52,11 +52,11 @@ Simples como voar!
 
 A primeira coisa que temos que fazer é clonar o repositório da aplicação, para isso, execute o comando abaixo:
 ```sh
-git clone git@github.com:badtuxx/giropops-senhas.git
+git clone git@github.com:badtuxx/beskar-senhas.git
 ```
-Com isso temos um diretório chamado giropops-senhas com o código da aplicação, vamos acessa-lo:
+Com isso temos um diretório chamado beskar-senhas com o código da aplicação, vamos acessa-lo:
 ```sh
-cd giropops-senhas
+cd beskar-senhas
 ```
 O conteúdo do diretório é o seguinte:
 
@@ -111,27 +111,27 @@ spec:
       targetPort: 6379
   type: ClusterIP
 ```
-Agora vamos criar o Deployment do Giropops-Senhas, para isso, crie um arquivo chamado `giropops-senhas-deployment.yaml` com o seguinte conteúdo:
+Agora vamos criar o Deployment do Giropops-Senhas, para isso, crie um arquivo chamado `beskar-senhas-deployment.yaml` com o seguinte conteúdo:
 ```sh
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: giropops-senhas
-  name: giropops-senhas
+    app: beskar-senhas
+  name: beskar-senhas
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: giropops-senhas
+      app: beskar-senhas
   template:
     metadata:
       labels:
-        app: giropops-senhas
+        app: beskar-senhas
     spec:
       containers:
-      - image: linuxtips/giropops-senhas:1.0
-        name: giropops-senhas
+      - image: linuxtips/beskar-senhas:1.0
+        name: beskar-senhas
         ports:
         - containerPort: 5000
         imagePullPolicy: Always
@@ -143,17 +143,17 @@ spec:
             memory: "128Mi"
             cpu: "250m"
 ```
-E finalmente, vamos criar o Service do Giropops-Senhas, para isso, crie um arquivo chamado `giropops-senhas-service.yaml` com o seguinte conteúdo:
+E finalmente, vamos criar o Service do Giropops-Senhas, para isso, crie um arquivo chamado `beskar-senhas-service.yaml` com o seguinte conteúdo:
 ```yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: giropops-senhas
+  name: beskar-senhas
   labels:
-    app: giropops-senhas
+    app: beskar-senhas
 spec:
   selector:
-    app: giropops-senhas
+    app: beskar-senhas
   ports:
     - protocol: TCP
       port: 5000
@@ -174,25 +174,25 @@ Com os arquivos para nos ajudar, vamos criar o nosso Chart.
 
 Para criar o nosso Chart, poderiamos utilizar o comando helm create, mas eu quero fazer de uma maneira diferente, quero criar o nosso Chart na mão, para que você possa entender como ele é composto, e depois voltamos para o helm create para criar os nossos próximos Charts.
 
-Bem, a primeira coisa que temos que fazer é criar um diretório para o nosso Chart, vamos criar um diretório chamado `giropops-senhas-chart`:
+Bem, a primeira coisa que temos que fazer é criar um diretório para o nosso Chart, vamos criar um diretório chamado `beskar-senhas-chart`:
 ```sh
-mkdir giropops-senhas-chart
+mkdir beskar-senhas-chart
 ```
 Agora vamos acessar o diretório:
 ```sh
-cd giropops-senhas-chart
+cd beskar-senhas-chart
 ```
 Bem, agora vamos começar a criar a nossa estrutura de diretórios para o nosso Chart, e o primeiro cara que iremos criar é o Chart.yaml, que é o arquivo que contém as informações sobre o nosso Chart, como o nome, a versão, a descrição, etc.
 
 Vamos criar o arquivo Chart.yaml com o seguinte conteúdo:
 ```yaml
 apiVersion: v2
-name: giropops-senhas
+name: beskar-senhas
 description: Esse é o chart do Giropops-Senhas, utilizados nos laboratórios de Kubernetes.
 version: 0.1.0
 appVersion: 0.1.0
 sources:
-  - https://github.com/badtuxx/giropops-senhas
+  - https://github.com/badtuxx/beskar-senhas
 ```
 Nada de novo até aqui, somente criamos o arquivo Chart.yaml com as informações sobre o nosso Chart. Agora vamos para o nosso próximo passo, criar o diretório templates que é onde ficarão os nossos manifestos do Kubernetes.
 
@@ -204,8 +204,8 @@ Vamos mover os manifestos que criamos anteriormente para o diretório `templates
 ```sh
 mv ../redis-deployment.yaml templates/
 mv ../redis-service.yaml templates/
-mv ../giropops-senhas-deployment.yaml templates/
-mv ../giropops-senhas-service.yaml templates/
+mv ../beskar-senhas-deployment.yaml templates/
+mv ../beskar-senhas-service.yaml templates/
 ```
 Vamos deixar eles quietinhos lá por enquanto, e vamos criar o próximo arquivo que é o `values.yaml`. Esse é uma peça super importante do nosso Chart, pois é nele que iremos definir as variáveis que serão utilizadas nos nossos manifestos do Kubernetes, é nele que o Helm irá se basear para criar os manifestos do Kubernetes, ou melhor, para renderizar os manifestos do Kubernetes.
 
@@ -213,20 +213,20 @@ Quando criamos os manifestos para a nossa App, nós deixamos ele da mesma forma 
 
 Vamos criar o arquivo `values.yaml` com o seguinte conteúdo:
 ```yaml
-giropops-senhas:
-  name: "giropops-senhas"
-  image: "linuxtips/giropops-senhas:1.0"
+beskar-senhas:
+  name: "beskar-senhas"
+  image: "linuxtips/beskar-senhas:1.0"
   replicas: "3"
   port: 5000
   labels:
-    app: "giropops-senhas"
+    app: "beskar-senhas"
     env: "labs"
     live: "true"
   service:
     type: "NodePort"
     port: 5000
     targetPort: 5000
-    name: "giropops-senhas-port"
+    name: "beskar-senhas-port"
   resources:
     requests:
       memory: "128Mi"
@@ -258,9 +258,9 @@ redis:
 ```
 Não confunda o arquivo acima com os manifestos do Kubernetes, o arquivo acima é apenas algumas definições que iremos usar no lugar das variáveis que defineremos nos manifestos do Kubernetes.
 
-Precisamos entender como ler o arquivo acima, e é bem simples, o arquivo acima é um arquivo YAML, e nele temos duas chaves, giropops-senhas e redis, e dentro de cada chave temos as definições que iremos utilizar, por exemplo:
+Precisamos entender como ler o arquivo acima, e é bem simples, o arquivo acima é um arquivo YAML, e nele temos duas chaves, beskar-senhas e redis, e dentro de cada chave temos as definições que iremos utilizar, por exemplo:
 
-- `giropops-senhas:`
+- `beskar-senhas:`
    - `image:` A imagem que iremos utilizar para o nosso Deployment
    - `replicas:` A quantidade de réplicas que iremos utilizar para o nosso Deployment
    - `port:` A porta que iremos utilizar para o nosso Service
@@ -345,55 +345,55 @@ spec:
       port: {{ .Values.redis.service.port }}
       targetPort: {{ .Values.redis.service.port }}
   type: {{ .Values.redis.service.type }}
-E para o arquivo giropops-senhas-deployment.yaml:
+E para o arquivo beskar-senhas-deployment.yaml:
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    app: giropops-senhas
-  name: giropops-senhas
+    app: beskar-senhas
+  name: beskar-senhas
 spec:
-  replicas: {{ .Values.giropops-senhas.replicas }}
+  replicas: {{ .Values.beskar-senhas.replicas }}
   selector:
     matchLabels:
-      app: giropops-senhas
+      app: beskar-senhas
   template:
     metadata:
       labels:
-        app: giropops-senhas
+        app: beskar-senhas
     spec:
       containers:
-      - image: {{ .Values.giropops-senhas.image }}
-        name: giropops-senhas
+      - image: {{ .Values.beskar-senhas.image }}
+        name: beskar-senhas
         ports:
-        - containerPort: {{ .Values.giropops-senhas.service.port }}
+        - containerPort: {{ .Values.beskar-senhas.service.port }}
         imagePullPolicy: Always
         resources:
           limits:
-            memory: {{ .Values.giropops-senhas.resources.limits.memory }}
-            cpu: {{ .Values.giropops-senhas.resources.limits.cpu }}
+            memory: {{ .Values.beskar-senhas.resources.limits.memory }}
+            cpu: {{ .Values.beskar-senhas.resources.limits.cpu }}
           requests:
-            memory: {{ .Values.giropops-senhas.resources.requests.memory }}
-            cpu: {{ .Values.giropops-senhas.resources.requests.cpu }}
+            memory: {{ .Values.beskar-senhas.resources.requests.memory }}
+            cpu: {{ .Values.beskar-senhas.resources.requests.cpu }}
 ```
-E para o arquivo giropops-senhas-service.yaml:
+E para o arquivo beskar-senhas-service.yaml:
 ```yaml
 apiVersion: v1
 kind: Service
 metadata:
-  name: giropops-senhas
+  name: beskar-senhas
   labels:
-    app: giropops-senhas
+    app: beskar-senhas
 spec:
   selector:
-    app: giropops-senhas
+    app: beskar-senhas
   ports:
     - protocol: TCP
-      port: {{ .Values.giropops-senhas.service.port }}
-      nodePort: {{ .Values.giropops-senhas.service.nodePort }}
-      targetPort: {{ .Values.giropops-senhas.service.port }}
-  type: {{ .Values.giropops-senhas.service.type }}
+      port: {{ .Values.beskar-senhas.service.port }}
+      nodePort: {{ .Values.beskar-senhas.service.nodePort }}
+      targetPort: {{ .Values.beskar-senhas.service.port }}
+  type: {{ .Values.beskar-senhas.service.type }}
 ```
 Agora já temos todos os nosso manifestos mais dinâmicos, e portanto já podemos chama-los de Templates, que é o nome que o Helm utiliza para os manifestos do Kubernetes que são renderizados utilizando as variáveis.
 
@@ -410,11 +410,11 @@ Para que possamos utilizar o nosso Chart, precisamos utilizar o comando helm ins
 
 Vamos instalar o nosso Chart, para isso, execute o comando abaixo:
 ```sh
-helm install giropops-senhas ./
+helm install beskar-senhas ./
 ```
 Se tudo ocorrer bem, você verá a seguinte saída:
 ```sh
-NAME: giropops-senhas
+NAME: beskar-senhas
 LAST DEPLOYED: Thu Feb  8 16:37:58 2024
 NAMESPACE: default
 STATUS: deployed
@@ -430,9 +430,9 @@ kubectl get pods
 A saída será algo assim:
 ```sh
 NAME                                READY   STATUS    RESTARTS      AGE
-giropops-senhas-7d4fddc49f-9zfj9    1/1     Running   0             42s
-giropops-senhas-7d4fddc49f-dn996    1/1     Running   0             42s
-giropops-senhas-7d4fddc49f-fpvh6    1/1     Running   0             42s
+beskar-senhas-7d4fddc49f-9zfj9    1/1     Running   0             42s
+beskar-senhas-7d4fddc49f-dn996    1/1     Running   0             42s
+beskar-senhas-7d4fddc49f-fpvh6    1/1     Running   0             42s
 redis-deployment-76c5cdb57b-wf87q   1/1     Running   0             42s
 ```
 Perceba que temos 3 Pods rodando para a nossa aplicação Giropops-Senhas, e 1 Pod rodando para o Redis, conforme definimos no arquivo `values.yaml`.
@@ -445,7 +445,7 @@ Se você quiser ver de alguma namespace específica, você pode utilizar o coman
 
 Para ver mais detalhes do Chart que instalamos, você pode utilizar o comando `helm get`, para isso, execute o comando abaixo:
 ```sh
-helm get all giropops-senhas
+helm get all beskar-senhas
 ```
 A saída será os detalhes do Chart e os manifestos que foram renderizados pelo Helm.
 
@@ -456,20 +456,20 @@ Vamos fazer uma alteração no nosso Chart, e vamos ver como atualizar a nossa a
 
 Vamos editar o `values.yaml` e alterar a quantidade de réplicas que estamos utilizando para a nossa aplicação Giropops-Senhas, para isso, edite o arquivo values.yaml e altere a quantidade de réplicas para 5:
 ```yaml
-giropops-senhas:
-  name: "giropops-senhas"
-  image: "linuxtips/giropops-senhas:1.0"
+beskar-senhas:
+  name: "beskar-senhas"
+  image: "linuxtips/beskar-senhas:1.0"
   replicas: "5"
   port: 5000
   labels:
-    app: "giropops-senhas"
+    app: "beskar-senhas"
     env: "labs"
     live: "true"
   service:
     type: "NodePort"
     port: 5000
     targetPort: 5000
-    name: "giropops-senhas-port"
+    name: "beskar-senhas-port"
   resources:
     requests:
       memory: "128Mi"
@@ -502,12 +502,12 @@ A única coisa que alteramos foi a quantidade de réplicas que estamos utilizand
 
 Vamos agora pedir para o Helm atualizar a nossa aplicação, para isso, execute o comando abaixo:
 ```sh
-helm upgrade giropops-senhas ./
+helm upgrade beskar-senhas ./
 ```
 Se tudo ocorrer bem, você verá a seguinte saída:
 ```sh
-Release "giropops-senhas" has been upgraded. Happy Helming!
-NAME: giropops-senhas
+Release "beskar-senhas" has been upgraded. Happy Helming!
+NAME: beskar-senhas
 LAST DEPLOYED: Thu Feb  8 16:46:26 2024
 NAMESPACE: default
 STATUS: deployed
@@ -516,22 +516,22 @@ TEST SUITE: None
 ```
 Agora vamos ver se o número de réplicas foi alterado, para isso, execute o comando abaixo:
 ````sh
-giropops-senhas-7d4fddc49f-9zfj9    1/1     Running   0             82s
-giropops-senhas-7d4fddc49f-dn996    1/1     Running   0             82s
-giropops-senhas-7d4fddc49f-fpvh6    1/1     Running   0             82s
+beskar-senhas-7d4fddc49f-9zfj9    1/1     Running   0             82s
+beskar-senhas-7d4fddc49f-dn996    1/1     Running   0             82s
+beskar-senhas-7d4fddc49f-fpvh6    1/1     Running   0             82s
 redis-deployment-76c5cdb57b-wf87q   1/1     Running   0             82s
-giropops-senhas-7d4fddc49f-ll25z    1/1     Running   0             18s
-giropops-senhas-7d4fddc49f-w8p7r    1/1     Running   0             18s
+beskar-senhas-7d4fddc49f-ll25z    1/1     Running   0             18s
+beskar-senhas-7d4fddc49f-w8p7r    1/1     Running   0             18s
 ````
 Agora temos mais dois Pods em execução, da mesma forma que definimos no arquivo `values.yaml`.
 
 Agora vamos remover a nossa aplicação:
 ```sh
-helm uninstall giropops-senhas
+helm uninstall beskar-senhas
 ```
 A saída será algo assim:
 ```sh
-release "giropops-senhas" uninstalled
+release "beskar-senhas" uninstalled
 ```
 Já era, a nossa aplicação foi removida com sucesso!
 
@@ -539,7 +539,7 @@ Como eu falei, nesse caso criamos tudo na mão, mas eu poderia ter usado o coman
 
 A estrutura de diretórios que o `helm create` cria é a seguinte:
 ````sh
-giropops-senhas-chart/
+beskar-senhas-chart/
 ├── charts
 ├── Chart.yaml
 ├── templates
@@ -617,9 +617,9 @@ Onde:
 ```
 Simples como voar! Bora lá utilizar essas duas fun´ções para deixar o nosso Chart ainda mais legal.
 
-Vamos começar criando um arquivo chamado giropops-senhas-service.yaml com o seguinte conteúdo:
+Vamos começar criando um arquivo chamado beskar-senhas-service.yaml com o seguinte conteúdo:
 ```yaml
-{{- range .Values.giropops-senhas.ports }}
+{{- range .Values.beskar-senhas.ports }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -636,7 +636,7 @@ spec:
 {{- end }}
     targetPort: {{ .targetPort }}
   selector:
-    app: giropops-senhas
+    app: beskar-senhas
 ---
 {{- end }}
 ```
@@ -644,22 +644,22 @@ No arquivo acima, estamos utilizando a função `range` para iterar sobre a list
 
 Agora vamos alterar o arquivo `values.yaml` e adicionar a lista de portas que queremos expor para a nossa aplicação, para isso, edite o arquivo `values.yaml` e adicione a lista de portas que queremos expor para a nossa aplicação:
 ```yaml
-giropops-senhas:
-  name: "giropops-senhas"
-  image: "linuxtips/giropops-senhas:1.0"
+beskar-senhas:
+  name: "beskar-senhas"
+  image: "linuxtips/beskar-senhas:1.0"
   replicas: "3"
   ports:
     - port: 5000
       targetPort: 5000
-      name: "giropops-senhas-port"
+      name: "beskar-senhas-port"
       serviceType: NodePort
       NodePort: 32500
     - port: 8088
       targetPort: 8088
-      name: "giropops-senhas-metrics"
+      name: "beskar-senhas-metrics"
       serviceType: ClusterIP
   labels:
-    app: "giropops-senhas"
+    app: "beskar-senhas"
     env: "labs"
     live: "true"
   resources:
@@ -690,9 +690,9 @@ redis:
       memory: "256Mi"
       cpu: "500m"
 ```
-Temos algumas coisas novas no arquivo `values.yaml.` O objetivo da mudança é deixar o arquivo ainda mais dinâmico, e para isso, adicionamos adicionamos mais informações sobre as portas que iremos utilizar. Deixamos as informações mais organizadas para facilitar a dinâmica criada no arquivo `giropops-senhas-service.yaml`.
+Temos algumas coisas novas no arquivo `values.yaml.` O objetivo da mudança é deixar o arquivo ainda mais dinâmico, e para isso, adicionamos adicionamos mais informações sobre as portas que iremos utilizar. Deixamos as informações mais organizadas para facilitar a dinâmica criada no arquivo `beskar-senhas-service.yaml`.
 
-Poderiamos ainda criar um único template para realizar o deploy do Redis e do Giropops-Senhas, somente para que possamos gastar um pouquinho mais do nosso conhecimento, ou seja, isso aqui é muito mais para fins didáticos do que para a vida real, mas vamos lá, vamos criar um arquivo chamado `giropops-senhas-deployment.yaml` com o seguinte conteúdo:
+Poderiamos ainda criar um único template para realizar o deploy do Redis e do Giropops-Senhas, somente para que possamos gastar um pouquinho mais do nosso conhecimento, ou seja, isso aqui é muito mais para fins didáticos do que para a vida real, mas vamos lá, vamos criar um arquivo chamado `beskar-senhas-deployment.yaml` com o seguinte conteúdo:
 ```yaml
 {{- range $component, $config := .Values.deployments }}
 apiVersion: apps/v1
@@ -739,11 +739,11 @@ Estamos utilizando a função range logo no inicio do arquivo, e com ele estamos
 
 Agora vamos instalar a nossa aplicação com o comando abaixo:
 ```sh
-helm install giropops-senhas ./
+helm install beskar-senhas ./
 ```
 A saída será algo assim:
 ```sh
-Error: INSTALLATION FAILED: parse error at (giropops-senhas/templates/services.yaml:1): bad character U+002D '-'
+Error: INSTALLATION FAILED: parse error at (beskar-senhas/templates/services.yaml:1): bad character U+002D '-'
 ```
 Parece que alguma coisa de errado não está certo, certo? hahaha
 
@@ -755,7 +755,7 @@ Para resolver isso, vamos utilizar mais uma função do Helm, que é a função 
 
 A função `index`nos permite acessar um valor de um mapa baseado na chave que estamos passando, nesse caso seria o `.Values`, e ainda buscar um valor baseado na chave que estamos passando, que é o nome do componente que estamos interando. Vamos ver como ficaria o nosso `services.yaml` com a utilização da função `index:`
 ```yaml
-{{- range (index .Values "giropops-senhas").ports }}
+{{- range (index .Values "beskar-senhas").ports }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -772,17 +772,17 @@ spec:
 {{- end }}
     targetPort: {{ .targetPort }}
   selector:
-    app: giropops-senhas
+    app: beskar-senhas
 ---
 {{- end }}
 ```
 Pronto, agora acredito que tudo terá um final feliz, para ter certeza, vamos instalar a nossa aplicação com o comando abaixo:
 ```sh
-helm install giropops-senhas ./
+helm install beskar-senhas ./
 ```
 Se tudo ocorrer bem, você verá a seguinte saída:
 ```sh
-NAME: giropops-senhas
+NAME: beskar-senhas
 LAST DEPLOYED: Sat Feb 10 12:19:27 2024
 NAMESPACE: default
 STATUS: deployed
@@ -796,7 +796,7 @@ kubectl get deployment
 Temos a saída abaixo:
 ```sh
 NAME                         READY   UP-TO-DATE   AVAILABLE   AGE
-giropops-senhas-deployment   3/3     3            3           4m1s
+beskar-senhas-deployment   3/3     3            3           4m1s
 redis-deployment             1/1     1            1           4m1s
 Agora os Pods:
 ```
@@ -806,20 +806,20 @@ kubectl get pods
 A saída:
 ```sh
 NAME                                         READY   STATUS    RESTARTS   AGE
-giropops-senhas-deployment-5c547c9cf-979vp   1/1     Running   0          4m40s
-giropops-senhas-deployment-5c547c9cf-s5k9x   1/1     Running   0          4m39s
-giropops-senhas-deployment-5c547c9cf-zp4s4   1/1     Running   0          4m39s
+beskar-senhas-deployment-5c547c9cf-979vp   1/1     Running   0          4m40s
+beskar-senhas-deployment-5c547c9cf-s5k9x   1/1     Running   0          4m39s
+beskar-senhas-deployment-5c547c9cf-zp4s4   1/1     Running   0          4m39s
 redis-deployment-69c5869684-cxslb            1/1     Running   0          4m40s
 ```
 Vamos ver os Services:
 ```sh
 kubectl get svc
 ```
-Se a sua saída trouxe os dois serviços, com os nomes `giropops-senhas-port` e `giropops-senhas-metrics`, e com os tipos `NodePort` e `ClusterIP`, `respectivamente`, é um sinal de que deu super bom!
+Se a sua saída trouxe os dois serviços, com os nomes `beskar-senhas-port` e `beskar-senhas-metrics`, e com os tipos `NodePort` e `ClusterIP`, `respectivamente`, é um sinal de que deu super bom!
 ```sh
 NAME                      TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
-giropops-senhas-app       NodePort    10.96.185.6    <none>        5000:32500/TCP   5m1s
-giropops-senhas-metrics   ClusterIP   10.96.107.37   <none>        8088/TCP         5m1s
+beskar-senhas-app       NodePort    10.96.185.6    <none>        5000:32500/TCP   5m1s
+beskar-senhas-metrics   ClusterIP   10.96.107.37   <none>        8088/TCP         5m1s
 kubernetes                ClusterIP   10.96.0.1      <none>        443/TCP          3d21h
 ```
 Parece que deu ruim, certo?
@@ -829,12 +829,12 @@ Ficou faltando o Service do Redis. :/
 Vamos resolver, mas antes, vamos mudar um pouco a organização em nosso values.yaml.
 ```yaml
 deployments:
-  giropops-senhas:
-    name: "giropops-senhas"
-    image: "linuxtips/giropops-senhas:1.0"
+  beskar-senhas:
+    name: "beskar-senhas"
+    image: "linuxtips/beskar-senhas:1.0"
     replicas: "3"
     labels:
-      app: "giropops-senhas"
+      app: "beskar-senhas"
       env: "labs"
       live: "true"
     resources:
@@ -865,19 +865,19 @@ deployments:
         memory: "256Mi"
         cpu: "500m"
 services:
-  giropops-senhas:
+  beskar-senhas:
     ports:
       - port: 5000
         targetPort: 5000
-        name: "giropops-senhas-app"
+        name: "beskar-senhas-app"
         serviceType: NodePort
         NodePort: 32500
       - port: 8088
         targetPort: 8088
-        name: "giropops-senhas-metrics"
+        name: "beskar-senhas-metrics"
         serviceType: ClusterIP
     labels:
-      app: "giropops-senhas"
+      app: "beskar-senhas"
       env: "labs"
       live: "true"
   redis:
@@ -927,19 +927,19 @@ Temos duas opções, ou realizamos o` uninstall` e o `install` novamente, ou rea
 
 Vou realizar o` uninstall` e o `install` novamente, para isso, execute os comandos abaixo:
 ```sh
-helm uninstall giropops-senhas
+helm uninstall beskar-senhas
 ```
 E agora:
 ```sh
-helm install giropops-senhas ./
+helm install beskar-senhas ./
 ```
 Caso eu queira fazer o `upgrade`, eu poderia utilizar o comando abaixo:
 ```sh
-helm upgrade giropops-senhas ./
+helm upgrade beskar-senhas ./
 ```
 Pronto, se tudo estiver certinho, temos uma saída parecida com a seguinte:
 ```sh
-NAME: giropops-senhas
+NAME: beskar-senhas
 LAST DEPLOYED: Sat Feb 10 14:05:37 2024
 NAMESPACE: default
 STATUS: deployed
@@ -953,21 +953,395 @@ kubectl get deployments,pods,svc
 Assim ele trará todos os nossos recursos utilizados pela nossa aplicação.
 ```sh
 NAME                              READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/giropops-senhas   3/3     3            3           69s
+deployment.apps/beskar-senhas   3/3     3            3           69s
 deployment.apps/redis             1/1     1            1           69s
 
 NAME                                   READY   STATUS    RESTARTS   AGE
-pod/giropops-senhas-8598bc5699-68sn6   1/1     Running   0          69s
-pod/giropops-senhas-8598bc5699-wgnxj   1/1     Running   0          69s
-pod/giropops-senhas-8598bc5699-xqssx   1/1     Running   0          69s
+pod/beskar-senhas-8598bc5699-68sn6   1/1     Running   0          69s
+pod/beskar-senhas-8598bc5699-wgnxj   1/1     Running   0          69s
+pod/beskar-senhas-8598bc5699-xqssx   1/1     Running   0          69s
 pod/redis-69c5869684-62d2h             1/1     Running   0          69s
 
 NAME                              TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
-service/giropops-senhas-app       NodePort    10.96.119.23   <none>        5000:30032/TCP   69s
-service/giropops-senhas-metrics   ClusterIP   10.96.110.83   <none>        8088/TCP         69s
+service/beskar-senhas-app       NodePort    10.96.119.23   <none>        5000:30032/TCP   69s
+service/beskar-senhas-metrics   ClusterIP   10.96.110.83   <none>        8088/TCP         69s
 service/kubernetes                ClusterIP   10.96.0.1      <none>        443/TCP          3d22h
 service/redis-service             ClusterIP   10.96.77.187   <none>        6379/TCP         69s
 Pronto! Tudo criado com sucesso!
 ```
 
 Agora você já sabe como utilizar o range, index e o if no Helm, e já sabe como criar um Chart do zero, e já sabe como instalar, atualizar e remover a sua aplicação utilizando o Helm
+
+## Utilizando default, toYaml e toJson no Helm
+Vamos comecer mais algumas funções do Helm, que são o default, toYaml e toJson, que nos ajudarão a deixar o nosso Chart ainda mais dinâmico e customizável.
+
+Suponhamos que queremos garantir que sempre haja um valor padrão para o número de réplicas nos nossos deployments, mesmo que esse valor não tenha sido especificamente definido no `values.yaml`. Podemos modificar o nosso beskar-senhas-deployment.yaml para incluir a função default:
+```sh
+replicas: {{ .Values.giropopsSenhas.replicas | default 3 }}
+```
+Agora vamos adicionar a configuração necessária para a observabilidade da nossa aplicação "Giropops-Senhas", que inclui diversos parâmetros de configuração, e precisamos passá-la como uma string JSON para um ConfigMap. E o toJson irá nos salvar:
+
+No `values.yaml`, adicionamos uma configuração complexa:
+```yaml
+observability:
+  beskar-senhas:
+    logging: true
+    metrics:
+      enabled: true
+      path: "/metrics"
+```
+Agora vamos criar um ConfigMap que inclui essa configuração como uma string JSON:
+```yaml
+{{- range $component, $config := .Values.observability }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $component }}-observability-config
+data:
+  app-config.json: | 
+    
+{{- end }}
+```
+Dessa forma, transformamos a configuração definida no `values.yaml` em uma string JSON formatada, que é injetada diretamente no ConfigMap. A função `nindent 4` garante que iremos usar com 4 espaços de indentação a cada linha do conteúdo injetado.
+```yaml
+{
+    "logging": true,
+    "metrics": {
+        "enabled": true,
+        "path": "/metrics"
+    }
+}
+```
+Fácil!
+
+E por fim, vamos adicionar o endereço de um banco de dados como uma configuração YAML, e precisamos passá-la como uma string YAML para um ConfigMap. E o `toYaml` é a função que irá garantir que a configuração seja injetada corretamente:
+
+A configuração no `values.yaml`:
+```yaml
+databases:
+  beskar-senhas:
+    type: "MySQL"
+      host: "mysql.svc.cluster.local"
+      port: 3306
+      name: "MyDB"
+```
+Com isso, já podemos criar um ConfigMap que inclui essa configuração como uma string YAML:
+```yaml
+{{- range $component, $config := .Values.databases }}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ $component }}-db-config
+data:
+  app-config.yaml: |
+{{- end }}
+```
+Dessa forma, transformamos a configuração definida no `values.yaml` em uma string YAML formatada, que é injetada diretamente no ConfigMap. A função` nindent 2` garante que o conteúdo injetado esteja corretamente indentado, pois ela adiciona 2 espaços de indentação a cada linha do conteúdo injetado.
+
+Para que possamos aplicar essas modificações, precisamos realizar o upgrade da nossa aplicação, para isso, execute o comando abaixo:
+```sh
+helm upgrade beskar-senhas ./
+```
+Agora já temos além dos deployments e services, também os ConfigMaps para a nossa aplicação.
+
+Para ver os ConfigMaps, execute o comando abaixo:
+```sh
+kubectl get configmaps
+```
+Para ver os detalhes de cada ConfigMap, execute o comando abaixo:
+```sh
+kubectl get configmap <configmap-name> -o yaml
+```
+## O Que São Helpers no Helm?
+Helpers no Helm são funções definidas em arquivos `_helpers.tpl` dentro do diretório `templates` de um gráfico Helm. Eles permitem a reutilização de código e lógicas complexas em seus templates, promovendo práticas de codificação DRY (Don't Repeat Yourself). Isso significa que, em vez de repetir o mesmo código em vários lugares, você pode definir uma função helper e chamá-la sempre que precisar.
+
+**Por Que Usar Helpers?**
+  - Reutilização de Código: Evita duplicação e facilita a manutenção.
+  - Abstração de Complexidade: Encapsula lógicas complexas, tornando os templates mais limpos e fáceis de entender.
+  - Personalização e Flexibilidade: Permite a criação de templates mais dinâmicos e adaptáveis às necessidades específicas do usuário.
+**Criando o Nosso Primeiro Helper**
+Para ilustrar a criação e o uso de helpers, vamos começar com um exemplo prático. Imagine que você precisa incluir o nome padrão do seu aplicativo em vários recursos Kubernetes no seu chart Helm. Em vez de escrever manualmente o nome em cada recurso, você pode definir um helper para isso.
+
+1. `Definindo um Helper:` No diretório templates, crie um arquivo chamado _helpers.tpl e adicione o seguinte conteúdo:
+```sh
+{{/*
+Define um helper para o nome do aplicativo.
+*/}}
+{{- define "meuapp.name" -}}
+{{- default .Chart.Name .Values.appName | trunc 63 | trimSuffix "-" -}}
+{{- end -}}
+```
+Esta função define um nome padrão para o seu aplicativo, usando o nome do gráfico (Chart.Name) ou um nome personalizado definido em Values.appName, limitando-o a 63 caracteres e removendo quaisquer hífens no final.
+
+1. **Usando o Helper:** Agora, você pode usar este helper em seus templates para garantir que o nome do aplicativo seja consistente em todos os recursos. Por exemplo, em um template de Deployment, você pode usar:
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "meuapp.name" . }}
+  labels:
+    app: {{ include "meuapp.name" . }}
+```
+**Helpers Avançados: Exemplos Práticos**
+À medida que você se familiariza com os helpers, pode começar a explorar usos mais avançados. Aqui estão alguns exemplos que demonstram a flexibilidade e o poder dos helpers no Helm.
+
+**Exemplo 1: Controlando a Complexidade**
+Imagine que você tenha múltiplos serviços que precisam ser configurados de maneira ligeiramente diferente com base em certos valores de entrada. Você pode criar um helper complexo que gera a configuração apropriada para cada serviço.
+```sh
+{{/*
+Gerar configuração específica do serviço.
+*/}}
+{{- define "meuapp.serviceConfig" -}}
+{{- if eq .Values.serviceType "frontend" -}}
+# Configuração específica do frontend
+{{- else if eq .Values.serviceType "backend" -}}
+# Configuração específica do backend
+{{- end -}}
+{{- end -}}
+```
+**Exemplo 2: Personalização Baseada em Ambiente**
+Em ambientes de desenvolvimento, você pode querer configurar seus serviços de maneira diferente do que em produção. Um helper pode ajudar a injetar essas configurações com base no ambiente.
+```sh
+{{/*
+Ajustar configurações com base no ambiente.
+*/}}
+{{- define "meuapp.envConfig" -}}
+{{- if eq .Values.environment "prod" -}}
+# Configurações de produção
+{{- else -}}
+# Configurações de desenvolvimento
+{{- end
+
+ -}}
+{{- end -}}
+```
+**Melhores Práticas ao Usar Helpers**
+  - Mantenha os Helpers Simples: Funções muito complexas podem ser difíceis de manter e entender.
+  - Nomeie os Helpers de Forma Clara: Os nomes devem refletir o propósito da função para facilitar a compreensão e o uso.
+  - Documente Seus Helpers: Comentários claros sobre o que cada helper faz ajudam outros desenvolvedores a entender seu código mais rapidamente.
+  - Use Helpers para Lógicas Recorrentes: Aproveite os helpers para evitar a repetição de lógicas complexas ou padrões comuns em seus templates.
+**Criando o _helpers.tpl da nossa App**
+Chegou o momento de chamar os Helpers do Helm para nos ajudar a dimunir a repetição de códigos e também para reduzir a complexidade de nossos Templates.
+
+Vamos dividir em algumas etapas para ficar fácil o entendimento sobre o que estamos fazendo em cada passo. :)
+
+**Passo 1: Criando o arquivo _helpers.tpl**
+Como já vimos, o arquivo `_helpers.tpl` contém definições de templates que podem ser reutilizadas em vários lugares. Aqui estão alguns templates úteis para o nosso caso:
+
+**Labels**
+Para reutilizar as labels de aplicativos em seus deployments e services:
+```sh
+{{/*
+Generate application labels
+*/}}
+{{- define "app.labels" -}}
+app: {{ .labels.app }}
+env: {{ .labels.env }}
+live: {{ .labels.live }}
+{{- end }}
+```
+No arquivo acima estamos definindo um helper que gera as labels do aplicativo com base nas configurações fornecidas. Isso nos permite reutilizar as mesmas labels em vários recursos, garantindo consistência e facilitando a manutenção.
+
+**Resources**
+Template para definir os requests e limits de CPU e memória:
+```sh
+{{/*
+Generate container resources
+*/}}
+{{- define "app.resources" -}}
+requests:
+  memory: {{ .resources.requests.memory }}
+  cpu: {{ .resources.requests.cpu }}
+limits:
+  memory: {{ .resources.limits.memory }}
+  cpu: {{ .resources.limits.cpu }}
+{{- end }}
+```
+Aqui estamos definindo um helper que gera as configurações de recursos para um contêiner com base nas configurações fornecidas.
+
+**Ports**
+Template para a definição de portas no deployment:
+```sh
+{{/*
+Generate container ports
+*/}}
+{{- define "app.ports" -}}
+{{- range .ports }}
+- containerPort: {{ .port }}
+{{- end }}
+{{- end }}
+```
+**Passo 2: Refatorando Deployments.yaml e Services.yaml**
+Com os helpers definidos, já podemos refatorar nossos arquivos `Deployments.yaml` e `Services.yaml` para utilizar esses templates.
+**O nosso Deployments.yaml**
+```sh
+{{- range $component, $config := .Values.deployments }}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ $component }}
+  labels:
+    {{- include "app.labels" $config | nindent 4 }}
+spec:
+  replicas: {{ $config.replicas | default 3 }}
+  selector:
+    matchLabels:
+      app: {{ $config.labels.app }}
+  template:
+    metadata:
+      labels:
+        {{- include "app.labels" $config | nindent 8 }}
+    spec:
+      containers:
+      - name: {{ $component }}
+        image: {{ $config.image }}
+        ports:
+        {{- include "app.ports" $config | nindent 10 }}
+        resources:
+          {{- include "app.resources" $config | nindent 12 }}
+{{- if $config.env }}
+        env:
+        {{- range $config.env }}
+        - name: {{ .name }}
+          value: {{ .value }}
+        {{- end }}
+{{- end }}
+---
+{{- end }}
+```
+**O nosso Services.yaml**
+```sh
+{{- range $component, $config := .Values.services }}
+  {{- range $port := $config.ports }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ $component }}-{{ $port.name }}
+  labels:
+    {{- include "app.labels" $config | nindent 4 }}
+spec:
+  type: {{ $port.serviceType }}
+  ports:
+  - port: {{ $port.port }}
+    targetPort: {{ $port.targetPort }}
+    protocol: TCP
+    name: {{ $port.name }}
+    {{- if eq $port.serviceType "NodePort" }}
+    nodePort: {{ $port.nodePort }}
+    {{- end }}
+  selector:
+    app: {{ $config.labels.app }}
+---
+  {{- end }}
+{{- end }}
+```
+Pronto! Agora já temos o` _helpers.tpl` criado e os templates atualizados!
+
+Caso queira testar, basta instalar ou fazer o upgrade do nosso Chart. Não vou fazer aqui novamente pois já executamos mais de 1 milhão de vezes, você já sabe como fazer isso com os pés nas costas. :)
+
+**Passo 3: Refatorando os ConfigMaps**
+Ainda precisamos trabalhar com os nosso ConfigMaps, e para isso eu pensei em executar algo um pouco mais complexo, somente para que possamos gastar todo o nosso conhecimento. hahaha
+
+Para tornar os arquivos `config-map-dp.yaml` e `config-map-obs.yaml` mais inteligentes e menos complexos com a ajuda do arquivo` _helpers.tpl`, podemos adicionar mais definições de template que facilitam a criação de ConfigMaps para bases de dados e configurações de observabilidade. Vou adicionar templates específicos para esses dois tipos de ConfigMap no arquivo `_helpers.tpl` e, em seguida, refatorar os arquivos de ConfigMap para utilizar esses templates.
+
+**Atualizando o** `_helpers.tpl`
+Adicionaremos templates para gerar ConfigMaps de bancos de dados e observabilidade:
+```sh
+{{/*
+Generate database config map
+*/}}
+{{- define "database.configmap" -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .component }}-db-config
+data:
+  app-config.yaml: |
+    {{- toYaml .config | nindent 4 }}
+{{- end }}
+
+{{/*
+Generate observability config map
+*/}}
+{{- define "observability.configmap" -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .component }}-observability-config
+data:
+  app-config.json: | 
+    {{ toJson .config }}
+{{- end }}
+```
+Agora estamos praticamente colocando todo o conteúdo dos ConfigMaps aqui, isso fará com que os nossos arquivos fiquem bem pequenos e somente utilizando a combinação do `values.yaml` e o `_helpers.tpl`.
+
+**Refatorando** `config-map-dp.yaml`
+Para utilizar o template do `_helpers.tpl`, bora modificar o arquivo `config-map-dp.yaml` da seguinte forma:
+
+```sh
+{{- range $component, $config := .Values.databases }}
+  {{- $data := dict "component" $component "config" $config }}
+  {{- include "database.configmap" $data | nindent 0 }}
+{{- end }}
+```
+Isso irá percorrer todos os componentes definidos em `.Values.databases` e aplicar o template definido para criar um ConfigMap para cada banco de dados.
+
+**Refatorando** `config-map-obs.yaml`
+Da mesma forma, modifique o arquivo `config-map-obs.yaml` para usar o template de observabilidade:
+```sh
+{{- range $component, $config := .Values.observability }}
+  {{- $data := dict "component" $component "config" $config }}
+  {{- include "observability.configmap" $data | nindent 0 }}
+{{- end }}
+```
+Isso irá iterar sobre os componentes definidos em `.Values.observability` e aplicar o template para criar um ConfigMap de observabilidade para cada componente.
+
+Ahhh, o nosso arquivo _helpers.tpl ficou da seguinte maneira:
+```sh
+{{/* Define a base para reutilização de labels */}}
+{{- define "app.labels" -}}
+app: {{ .labels.app }}
+env: {{ .labels.env }}
+live: {{ .labels.live }}
+{{- end }}
+
+{{/* Template para especificações de recursos de containers */}}
+{{- define "app.resources" -}}
+requests:
+  memory: {{ .resources.requests.memory }}
+  cpu: {{ .resources.requests.cpu }}
+limits:
+  memory: {{ .resources.limits.memory }}
+  cpu: {{ .resources.limits.cpu }}
+{{- end }}
+
+{{/* Template para definição de portas em containers */}}
+{{- define "app.ports" -}}
+{{- range .ports }}
+- containerPort: {{ .port }}
+{{- end }}
+{{- end }}
+
+{{/* Template para gerar um ConfigMap para configurações de banco de dados */}}
+{{- define "database.configmap" -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .component }}-db-config
+data:
+  app-config.yaml: |
+    {{- toYaml .config | nindent 4 }}
+{{- end }}
+
+{{/* Template para gerar um ConfigMap para configurações de observabilidade */}}
+{{- define "observability.configmap" -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .component }}-observability-config
+data:
+  app-config.json: | 
+    {{ toJson .config }}
+{{- end }}
+```
+Veja o quanto conseguimos modificar os nossos Templates utilizando o nosso `_helpers.tpl`, isso é mágico demais! Porém é importante lembrar que não devemos usar os helpers para deixar as coisas mais complexas, e sim, facilitar e diminuir a nossa carga cognitiva e a repetição de códigos. Aqui estamos trabalhando de forma que fique mais didática, porém isso não quer dizer que você deva repetir isso em sua produção. Tudo depende, e dito isso, agora que você já conhece bem o que são os Helm Charts, acho que já podemos conhecer como criar o nosso repositório de Helm Charts!
