@@ -4,10 +4,10 @@ deployments:
     image: "linuxtips/giropops-senhas:1.0"
     replicas: "3"
     ports:
-      - port: 5000
-        targetPort: 5000
+      - port: 8080
+        targetPort: 8080
         name: "giropops-senhas-port"
-        serviceType: "LoadBalancer"
+        serviceType: "LoadBalacer"
         NodePort: 32500
       - port: 8088
         targetPort: 8088
@@ -50,7 +50,7 @@ services:
       - port: 8088
         targetPort: 8088
         name: "metrics"
-        serviceType: "LoadBalancer"
+        serviceType: "ClusterIP"
     labels:
       app: "giropops-senhas"
       env: "labs"
