@@ -14,7 +14,6 @@ spec:
     protocol: TCP
     name: {{ $port.name }}
     {{- if eq $port.serviceType "ClusterIP" }}
-    nodePort: {{ $port.nodePort }}
     {{- end }}
   selector:
     app: {{ $config.labels.app }}
