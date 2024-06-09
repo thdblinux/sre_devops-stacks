@@ -2,7 +2,6 @@
 {{- define "app.labels" -}}
 app: {{ .labels.app }}
 env: {{ .labels.env }}
-live: {{ .labels.live }}
 {{- end }}
 
 {{/* Template para especificações de recursos de containers */}}
