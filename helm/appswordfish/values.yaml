@@ -1,77 +1,116 @@
-deployments:
-  giropops-senhas:
-    name: "giropops-senhas-helm"
-    image: "linuxtips/giropops-senhas:1.0"
-    replicas: "3"
-    ports:
-      - port: 5000
-        targetPort: 5000
-        name: "giropops-senhas-port"
-        serviceType: "NodePort"
-        NodePort: 32500
-      - port: 8088
-        targetPort: 8088
-        name: "giropops-senhas-metrics"
-        serviceType: "LoadBalancer"
-    labels:
-      app: "giropops-senhas"
-      env: "labs"
-    resources:
-      requests:
-        memory: "64Mi"
-        cpu: "250m"
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: giropops-senhas-helm
+  labels:
+    app: giropops-senhas
+    env: labs
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: giropops-senhas
+  template:
+    metadata:
+      labels:
+        app: giropops-senhas
+    spec:
+      containers:
+      - name: giropops-senhas
+        image: linuxtips/giropops-senhas:1.0
+        ports:
+        - containerPort: 5000
+          name: giropops-senhas-port
+        - containerPort: 8088
+          name: giropops-senhas-metrics
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
 
-  redis:
-    name: "redis-helm"
-    image: "redis"
-    replicas: "1"
-    labels:
-      app: "redis"
-      env: "labs"
-    resources:
-      requests:
-        memory: "64Mi"
-        cpu: "250m"
-      limits:
-        memory: "128Mi"
-        cpu: "500m"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-helm
+  labels:
+    app: redis
+    env: labs
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: redis
+  template:
+    metadata:
+      labels:
+        app: redis
+    spec:
+      containers:
+      - name: redis
+        image: redis
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
 
-services:
-  giropops-senhas:
-    ports:
-      - port: 5000
-        targetPort: 5000
-        name: "app"
-        serviceType: "NodePort"
-        NodePort: 32500
-      - port: 8088
-        targetPort: 8088
-        name: "metrics"
-        serviceType: "ClusterIP"
-    labels:
-      app: "giropops-senhas"
-      env: "labs"
-  redis:
-    ports:
-      - port: 6379
-        targetPort: 6379
-        name: "service"
-        serviceType: "ClusterIP"
-    labels:
-      app: "redis"
-      env: "labs"
-observability:
-  giropops-senhas:
-    logging:
-    metricas:
-      enabled: true
-      path: "/metrics"
-database:
-  giropops-senhas:
-    mysql:
-      host: "mysql.svc.cluster.local"
-      port: 3306
-      name: "DBbeskar"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: giropops-senhas-nodeport
+  labels:
+    app: giropops-senhas
+    env: labs
+spec:
+  type: NodePort
+  ports:
+  - port: 5000
+    targetPort: 5000
+    nodePort: 32500
+    protocol: TCP
+    name: app
+  selector:
+    app: giropops-senhas
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: giropops-senhas-loadbalancer
+  labels:
+    app: giropops-senhas
+    env: labs
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8088
+    targetPort: 8088
+    protocol: TCP
+    name: metrics
+  selector:
+    app: giropops-senhas
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: redis-service
+  labels:
+    app: redis
+    env: labs
+spec:
+  type: ClusterIP
+  ports:
+  - port: 6379
+    targetPort: 6379
+    protocol: TCP
+    name: service
+  selector:
+    app: redis
