@@ -13,6 +13,8 @@ spec:
     targetPort: {{ $port.targetPort }}
     protocol: TCP
     name: {{ $port.name }}
+    {{- if eq $port.serviceType "LoadBalancer" }}
+    loadBalacer: {{ $port.loadBalancer }}
     {{- end }}
   selector:
     app: {{ $config.labels.app }}
