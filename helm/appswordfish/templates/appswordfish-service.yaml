@@ -13,7 +13,7 @@ spec:
     targetPort: {{ $port.targetPort }}
     protocol: TCP
     name: {{ $port.name }}
-    {{- if eq $port.serviceType "NodePort" }}
+    {{- if eq $port.serviceType "LoadBalancer" }}
     nodePort: {{ $port.nodePort }}
     {{- end }}
   selector:
