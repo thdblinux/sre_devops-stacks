@@ -13,7 +13,6 @@ spec:
     targetPort: {{ $port.targetPort }}
     protocol: TCP
     name: {{ $port.name }}
-    {{- if eq $port.serviceType "ClusterIP" }}
     {{- end }}
   selector:
     app: {{ $config.labels.app }}
