@@ -11,6 +11,10 @@ spec:
   ports:
   - port: {{ $port.port }}
     targetPort: {{ $port.targetPort }}
+    protocol: TCP
+    name: {{ $port.name }}
+    {{- if eq $port.serviceType "NodePort" }}
+    nodePort: {{ $port.nodePort }}
     {{- end }}
   selector:
     app: {{ $config.labels.app }}
