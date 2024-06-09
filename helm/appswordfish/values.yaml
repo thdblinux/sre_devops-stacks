@@ -8,11 +8,11 @@ deployments:
         targetPort: 5000
         name: "giropops-senhas-port"
         serviceType: "NodePort"
-        nodePort: 32500  # Se desejar manter o NodePort especificado
+        NodePort: 32500
       - port: 8088
         targetPort: 8088
         name: "giropops-senhas-metrics"
-        serviceType: "LoadBalancer"  # Alterado para LoadBalancer
+        serviceType: "ClusterIP"
     labels:
       app: "giropops-senhas"
       env: "labs"
@@ -38,6 +38,7 @@ deployments:
       limits:
         memory: "128Mi"
         cpu: "500m"
+
 services:
   giropops-senhas:
     ports:
@@ -45,15 +46,14 @@ services:
         targetPort: 5000
         name: "app"
         serviceType: "NodePort"
-        nodePort: 32500  # Se desejar manter o NodePort especificado
+        NodePort: 32500
       - port: 8088
         targetPort: 8088
         name: "metrics"
-        serviceType: "LoadBalancer"  # Alterado para LoadBalancer
+        serviceType: "ClusterIP"
     labels:
       app: "giropops-senhas"
       env: "labs"
-
   redis:
     ports:
       - port: 6379
