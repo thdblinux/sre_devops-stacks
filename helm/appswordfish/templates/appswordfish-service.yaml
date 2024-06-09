@@ -14,7 +14,6 @@ spec:
     protocol: TCP
     name: {{ $port.name }}
     {{- if eq $port.serviceType "LoadBalancer" }}
-    nodePort: {{ $port.nodePort }}
     {{- end }}
   selector:
     app: {{ $config.labels.app }}
