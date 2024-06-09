@@ -8,7 +8,6 @@ deployments:
         targetPort: 5000
         name: "giropops-senhas-port"
         serviceType: "LoadBalancer"
-        NodePort: 32500
       - port: 8088
         targetPort: 8088
         name: "giropops-senhas-metrics"
@@ -45,12 +44,11 @@ services:
       - port: 5000
         targetPort: 5000
         name: "app"
-        serviceType: "NodePort"
-        NodePort: 32500
+        serviceType: "LoadBlancer"
       - port: 8088
         targetPort: 8088
         name: "metrics"
-        serviceType: "ClusterIP"
+        serviceType: "LoadBalancer"
     labels:
       app: "giropops-senhas"
       env: "labs"
