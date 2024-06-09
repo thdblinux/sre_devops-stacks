@@ -50,7 +50,7 @@ services:
       - port: 8088
         targetPort: 8088
         name: "metrics"
-        serviceType: "ClusterIP"
+        serviceType: "LoadBalancer"
     labels:
       app: "giropops-senhas"
       env: "labs"
