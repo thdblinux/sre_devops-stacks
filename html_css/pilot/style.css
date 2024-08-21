@@ -1,0 +1,13 @@
+* {
+    box-sizing: border-box;
+}
+body {
+    margin: 0px;
+}
+
+.test {
+    background-color: rgba(13, 221, 48, 0.651);
+    width: 400px;
+    height: 400px;
+    margin: 20px;
+}
