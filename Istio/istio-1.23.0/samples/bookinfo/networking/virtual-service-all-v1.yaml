@@ -19,26 +19,10 @@ spec:
   hosts:
   - reviews
   http:
-  - fault:
-      delay:
-        fixedDelay: 2s
-        percentage:
-          value: 100   
-    match:
-    - headers:
-        end-user:
-          exact: grogus
-    route:
+  - route:
     - destination:
         host: reviews
-        subset: v2
-      weight: 20
-  - route:     
-    - destination:
-        host: reviews
-        subset: v3
-      weight: 80
-
+        subset: v1
 ---
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
