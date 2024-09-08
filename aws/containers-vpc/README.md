@@ -162,3 +162,12 @@ No modules.
 | <a name="output_ssm_subnet_public_1c"></a> [ssm\_subnet\_public\_1c](#output\_ssm\_subnet\_public\_1c) | ID da subnet pública na zona de disponibilidade 1c, armazenado no AWS Systems Manager Parameter Store. Usado para configurar recursos que necessitam de acesso público nesta zona. |
 | <a name="output_ssm_vpc_id"></a> [ssm\_vpc\_id](#output\_ssm\_vpc\_id) | ID do VPC armazenado no AWS Systems Manager Parameter Store. Este ID é usado para identificar o VPC onde os recursos serão provisionados. |
 <!-- END_TF_DOCS -->
+### Terraform Outputs and Parameter Store
+![alt text](/aws/assets/public/aws.png)
+![alt text](/aws/assets/public/aws1.png)
+![alt text](/aws/assets/public/aws2.png)
+VPC Network
+![alt text](/aws/assets/public/aws3.png)
+### Bucket S3 remote state Terraform
+![alt text](/aws/assets/public/aws4.png)
+
