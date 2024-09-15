@@ -63,3 +63,13 @@ override.tf.json
 
 # Include tfplan files to ignore the plan output of command: terraform plan -out=tfplan
 # example: *tfplan*
+
+# Ignoring private keys and sensitive files
+**/id_ed25519*
+**/id_rsa*
+**/id_ecdsa*
+**/*.pem
+**/*.key
+**/*.p12
+**/*.crt
+**/*.jks
