@@ -397,5 +397,5 @@ Got message Fifth message at point(0, 2)
 Got message Third message at point(0, 3)
 Got message Sixth message at point(0, 3)
 ```
-![go2](https://github.com/user-attachments/assets/c1018586-17e3-41de-b6b5-dc51b32d0b82)
+![go2](/assets/public/go2.png)
 
