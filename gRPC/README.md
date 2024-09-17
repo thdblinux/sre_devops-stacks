@@ -31,7 +31,7 @@ Mude para o diretório de exemplo:
  cd grpc-go/examples/route_guide
 ```
 ### Definindo o service
-Nosso primeiro passo (como você saberá na Introdução ao gRPC ) é definir o service `gRPC` e os tipos de solicitação e resposta do método usando buffers de protocolo. Para o .protoarquivo completo, veja [routeguide/route_guide.proto.](https://github.com/grpc/grpc-go/blob/master/examples/route_guide/routeguide/route_guide.proto)
+Nosso primeiro passo (como você saberá na Introdução ao gRPC ) é definir o service `gRPC` e os tipos de solicitação e resposta do método usando buffers de protocolo. Para o .proto file completo, veja [routeguide/route_guide.proto.](https://github.com/grpc/grpc-go/blob/master/examples/route_guide/routeguide/route_guide.proto)
 
 Para definir um service, você especifica um nome `service` no seu .`proto` file:
 ```
