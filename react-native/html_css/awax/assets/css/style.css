@@ -1,6 +1,4 @@
-*,
-*::before,
-*::after {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -8,6 +6,8 @@
 
 body {
     font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    overflow-x:hidden;
 }
 
 header {
@@ -70,7 +70,18 @@ header {
     border-bottom: 5px solid #b28756;
     color: rgb(121, 102, 102);
 }
-
+.button {
+    display:inline-block;
+    background-color: #b28756;
+    color: white;
+    text-transform: uppercase;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 10px 30px;
+    margin-top: 30px;
+    border-radius: 20px;
+}
 .banner {
     height: calc(100vh - 100px);
     background-color: #333;
@@ -146,4 +157,66 @@ header {
 
 .banner .pointer.active {
     background-color: #b28756;
+}
+
+.default {
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+.default .section-title,
+.default .section-desc {
+    text-align: center;
+    text-transform: uppercase;
+}
+.default .section-title {
+    font-size: 20px;
+}
+.default.section-desc {
+    font-size: 12px;
+    color: #CCC;
+    margin-top: 10px;
+    margin-bottom:40px;
+}
+.default .section-body {
+    max-width: 1140px;
+    margin:auto;
+}
+.default.light {
+    background-color:#F7F7F7;
+}
+.default.light .section-title,
+.default.light .section-body {
+    color: #000;
+}
+.default.dark {
+    background-color:#000;
+}
+.default.dark .section-title,
+.default.dark .section-body {
+    color:#FFF;
+}
+
+
+/*
+###### CSS DE AREAS ESPECIFICAS ######
+*/
+
+.section-aboutus {
+    display:flex;
+}
+.section-aboutus--left {
+    flex: 1;
+}
+.section-aboutus--left p {
+    font-size: 14px;
+    line-height: 20px;
+}
+.section-aboutus--right {
+    width: 500px;
+    text-align: center;
+}
+.section-aboutus--right img {
+    width: 480px;
+    box-shadow: 0px 5px 10px #333;
 }
