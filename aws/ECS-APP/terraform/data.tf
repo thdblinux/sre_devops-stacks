@@ -3,7 +3,7 @@ data "aws_ssm_parameter" "vpc_id" {
 }
 
 data "aws_ssm_parameter" "listener" {
-  name = var.service_listener
+  name = var.ssm_listener
 }
 
 data "aws_ssm_parameter" "private_subnet_1" {

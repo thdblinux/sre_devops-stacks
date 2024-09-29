@@ -7,7 +7,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     font-size: 13px;
-    overflow-x:hidden;
+    overflow-x: hidden;
 }
 
 header {
@@ -70,8 +70,9 @@ header {
     border-bottom: 5px solid #b28756;
     color: rgb(121, 102, 102);
 }
+
 .button {
-    display:inline-block;
+    display: inline-block;
     background-color: #b28756;
     color: white;
     text-transform: uppercase;
@@ -82,6 +83,7 @@ header {
     margin-top: 30px;
     border-radius: 20px;
 }
+
 .banner {
     height: calc(100vh - 100px);
     background-color: #333;
@@ -102,6 +104,7 @@ header {
     display: inline-block;
     background-color: rgba(0, 0, 0, 0.8);
 }
+
 .banner .slidearea {
     display: flex;
     height: 100%;
@@ -110,18 +113,22 @@ header {
     align-items: center;
     color: white;
 }
+
 .banner h1 {
     text-transform: uppercase;
     font-weight: bold;
     font-size: 50px;
 }
+
 .banner h1 span {
     color: #b28756;
 }
+
 .banner h2 {
     text-transform: uppercase;
     margin-top: 20px;
 }
+
 .banner a {
     display: block;
     background-color: #b28756;
@@ -139,7 +146,7 @@ header {
     width: 100vw;
     height: 20px;
     position: absolute;
-    margin-top: -50opx;
+    margin-top: -50px; /* Corrigido de -50opx para -50px */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,8 +157,7 @@ header {
     height: 15px;
     border: 2px solid #b28756;
     border-radius: 8px;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin: 0 5px;
     cursor: pointer;
 }
 
@@ -160,8 +166,7 @@ header {
 }
 
 .default {
-    padding-top: 50px;
-    padding-bottom: 50px;
+    padding: 50px 0; /* Unificado padding-top e padding-bottom */
 }
 
 .default .section-title,
@@ -169,54 +174,164 @@ header {
     text-align: center;
     text-transform: uppercase;
 }
+
 .default .section-title {
     font-size: 20px;
 }
-.default.section-desc {
+
+.default .section-desc {
     font-size: 12px;
     color: #CCC;
-    margin-top: 10px;
-    margin-bottom:40px;
+    margin: 10px 0 40px; /* Unificado margens */
 }
+
 .default .section-body {
     max-width: 1140px;
-    margin:auto;
+    margin: auto;
 }
+
 .default.light {
-    background-color:#F7F7F7;
+    background-color: #F7F7F7;
 }
+
 .default.light .section-title,
 .default.light .section-body {
     color: #000;
 }
+
 .default.dark {
-    background-color:#000;
+    background-color: #000;
 }
+
 .default.dark .section-title,
 .default.dark .section-body {
-    color:#FFF;
+    color: #FFF;
 }
 
-
 /*
-###### CSS DE AREAS ESPECIFICAS ######
+###### CSS DE ÁREAS ESPECÍFICAS ######
 */
 
 .section-aboutus {
-    display:flex;
+    display: flex;
 }
+
 .section-aboutus--left {
     flex: 1;
 }
+
 .section-aboutus--left p {
     font-size: 14px;
     line-height: 20px;
 }
+
 .section-aboutus--right {
     width: 500px;
     text-align: center;
 }
+
 .section-aboutus--right img {
     width: 480px;
     box-shadow: 0px 5px 10px #333;
+}
+
+.section-services {
+    display: flex;
+}
+
+.section-service {
+    flex: 1;
+    text-align: center;
+    border-right: 1px solid #333;
+    padding: 15px;
+}
+.section-service:first-child {
+    border-left: 1px solid #333;
+}
+.section-service h4 {
+    margin-top: 20px;
+    text-transform: uppercase;
+    font-size: 18px;
+}
+
+.section-service p {
+    margin-top: 10px;
+    font-size: 13px;
+    color: #999;
+}
+
+.section-projects {
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+}
+.section-projects--filters {
+    border: 1px solid #CCC;
+    background-color: #EEE;
+    border-radius: 30px;
+    display: inline-block;
+    padding: 0px 20px;
+}
+
+.section-projects--filters ul,
+.section-projects--filters li {
+    list-style: none;
+}
+
+.section-projects--filters li {
+    display: inline-block;
+    padding: 10px;
+    text-transform: uppercase;
+    font-size: 13px;
+    border-left: 1px solid #CCC;
+    color: #555;
+    border-bottom: 3px solid #EEE;
+    cursor: pointer;
+}
+
+.section-projects--filters li:hover,
+.section-projects--filters li.active {
+    border-bottom: 3px solid #b28756;
+}
+.section-projects--filters li:first-child {
+    border-left: 0;
+}
+.section-projects--photos {
+    width: 100vw;
+    max-width: 1140px;
+    margin-top:20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.section-projects--photo {
+    width:280px;
+}
+.section-projects--photoarea {
+    margin: 10px;
+    width: 260px;
+    height: 160px;
+}
+.section-projects--photoarea img {
+    width: inherit;
+    height: inherit;
+}
+.section-projects--photoinfo {
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: inherit;
+    height: inherit;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+    color: white;
+    text-align: center;
+}
+.section-projects--photoinfo h5 {
+    font-size: 18px;
+    font-weight: 600;
+}
+.section-projects--photoarea:hover .section-projects--photoinfo {
+    display: flex;
 }

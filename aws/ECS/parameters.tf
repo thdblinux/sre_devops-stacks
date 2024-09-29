@@ -4,8 +4,8 @@ resource "aws_ssm_parameter" "lb_arn" {
   type  = "String"
 }
 
-resource "aws_ssm_parameter" "lb_listner" {
-  name  = "/mandalor/ecs/lb/listner"
+resource "aws_ssm_parameter" "lb_listener" {
+  name  = "/mandalor/ecs/lb/listener"
   value = aws_lb_listener.main.arn
   type  = "String"
 }

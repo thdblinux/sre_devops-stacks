@@ -45,16 +45,16 @@ resource "aws_route" "public_acces" {
 }
 
 resource "aws_route_table_association" "public_1a" {
-  subnet_id = aws_subnet.public_subenet_1a.id
+  subnet_id      = aws_subnet.public_subenet_1a.id
   route_table_id = aws_route_table.public_internet_access.id
 }
 
 resource "aws_route_table_association" "public_1b" {
-  subnet_id = aws_subnet.public_subenet_1b.id
+  subnet_id      = aws_subnet.public_subenet_1b.id
   route_table_id = aws_route_table.public_internet_access.id
 }
 
 resource "aws_route_table_association" "public_1c" {
-  subnet_id = aws_subnet.public_subenet_1c.id
+  subnet_id      = aws_subnet.public_subenet_1c.id
   route_table_id = aws_route_table.public_internet_access.id
 }

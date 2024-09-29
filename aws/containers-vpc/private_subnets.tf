@@ -71,16 +71,16 @@ resource "aws_route" "private_acces_1c" {
 }
 
 resource "aws_route_table_association" "private_1a" {
-  subnet_id = aws_subnet.private_subenet_1a.id
+  subnet_id      = aws_subnet.private_subenet_1a.id
   route_table_id = aws_route_table.private_internet_access_1a.id
 }
 
 resource "aws_route_table_association" "private_1b" {
-  subnet_id = aws_subnet.private_subenet_1b.id
+  subnet_id      = aws_subnet.private_subenet_1b.id
   route_table_id = aws_route_table.private_internet_access_1b.id
 }
 
 resource "aws_route_table_association" "private_1c" {
-  subnet_id = aws_subnet.private_subenet_1c.id
+  subnet_id      = aws_subnet.private_subenet_1c.id
   route_table_id = aws_route_table.private_internet_access_1c.id
 }

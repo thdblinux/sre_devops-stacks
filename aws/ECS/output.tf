@@ -7,6 +7,7 @@ output "lb_ssm_arn" {
 }
 
 
-output "lb_ssm_listner" {
-  value = aws_ssm_parameter.lb_listner.id
+output "lb_ssm_listener" {
+  value = aws_ssm_parameter.lb_listener
+  sensitive = true
 }
