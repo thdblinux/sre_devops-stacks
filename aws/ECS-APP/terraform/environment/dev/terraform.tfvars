@@ -25,8 +25,8 @@ ssm_private_subnet_2 = "/mandalor-vpc/vpc/subnet_private_1b"
 
 ssm_private_subnet_3 = "/mandalor-vpc/vpc/subnet_private_1c"
 
+<<<<<<< Updated upstream:aws/ECS-APP/terraform/environment/dev/terraform.tfvars
 ssm_alb             = "/mandalor/ecs/lb/id"
-ssm_alb = "mandalor/ecs/lb/id"
 
 service_hosts = [
   "chip.mandalor.demo"
@@ -62,14 +62,14 @@ task_maximum = 12
 
 scale_out_cpu_threshold       = 50
 scale_out_adjustment          = 2
+<<<<<<< Updated upstream:aws/ECS-APP/terraform/environment/dev/terraform.tfvars
 scale_out_comparison_operator = "GreaterThanOrEqualToThreshold"
 scale_out_statistic           = "Average"
-scale_out_comparison_operator = "GreaterThanOrEqualToThreshol"
-scale_out_statistc            = "Average"
 scale_out_period              = 60
 scale_out_evaluation_periods  = 2
 scale_out_cooldown            = 60
 
+<<<<<<< Updated upstream:aws/ECS-APP/terraform/environment/dev/terraform.tfvars
 scale_in_cpu_threshold       = 30
 scale_in_adjustment          = -1
 scale_in_comparison_operator = "LessThanOrEqualToThreshold"
@@ -77,13 +77,6 @@ scale_in_statistic           = "Average"
 scale_in_period              = 60
 scale_in_evaluation_periods  = 2
 scale_in_cooldown            = 60
-scale_in_cpu_threshold          = 30
-scale_in_adjustment             = -1
-scale_in_comparison_operator    = "LessThanOrEqualToThreshold"
-scale_in_statistc               = "Average"
-scale_in_period                 = 60
-scale_in_cpu_evaluation_periods = 2
-scale_in_cooldown               = 60
 
 scale_tracking_cpu      = 50
 scale_tracking_requests = 30
