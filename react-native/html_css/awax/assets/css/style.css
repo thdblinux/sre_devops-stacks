@@ -120,20 +120,11 @@ header {
     margin-top:20px;
 }
 .banner .sliders-pointers {
-<<<<<<< Updated upstream
     width:100vw;
     height:20px;
     position:absolute;
     margin-top:-50px;
     display:flex;
-=======
-    width: 100vw;
-    height: 20px;
-    position: absolute;
-    margin-top: -50px;
-    /* Corrigido de -50opx para -50px */
-    display: flex;
->>>>>>> Stashed changes
     justify-content: center;
     align-items: center;
 }
@@ -152,13 +143,8 @@ header {
 
 
 .default {
-<<<<<<< Updated upstream
     padding-top:50px;
     padding-bottom:50px;
-=======
-    padding: 50px 0;
-    /* Unificado padding-top e padding-bottom */
->>>>>>> Stashed changes
 }
 .default .section-title,
 .default .section-desc {
@@ -170,17 +156,10 @@ header {
     font-size:20px;
 }
 .default .section-desc {
-<<<<<<< Updated upstream
     font-size:12px;
     color:#CCC;
     margin-top:10px;
     margin-bottom:40px;
-=======
-    font-size: 12px;
-    color: #CCC;
-    margin: 10px 0 40px;
-    /* Unificado margens */
->>>>>>> Stashed changes
 }
 .default .section-body {
     max-width:1140px;
@@ -294,11 +273,9 @@ CSS DE ÃREAS ESPECÃFICAS
     border-right:1px solid #333;
     padding:15px;
 }
-
 .section-service:first-child {
     border-left:1px solid #333;
 }
-
 .section-service h4 {
     margin-top:20px;
     text-transform: uppercase;
@@ -315,15 +292,10 @@ CSS DE ÃREAS ESPECÃFICAS
 
 
 .section-projects {
-<<<<<<< Updated upstream
     display:flex;
-=======
-    display: flex;
->>>>>>> Stashed changes
     flex-direction: column;
     align-items: center;
 }
-
 .section-projects--filters {
     border:1px solid #CCC;
     background-color:#EEE;
@@ -349,13 +321,11 @@ CSS DE ÃREAS ESPECÃFICAS
 .section-projects--filters li.active {
     border-bottom:3px solid #B28756;
 }
-
 .section-projects--filters li:first-child {
-    border-left: 0;
+    border-left:0;
 }
 
 .section-projects--photos {
-<<<<<<< Updated upstream
     width:100vw;
     max-width:1140px;
     margin-top:20px;
@@ -365,26 +335,11 @@ CSS DE ÃREAS ESPECÃFICAS
 }
 .section-projects--photo {
     width:280px;
-=======
-    width: 100vw;
-    max-width: 1140px;
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 10px;
-    justify-content: center;
->>>>>>> Stashed changes
 }
 .section-projects--photoarea {
-<<<<<<< Updated upstream
     margin:10px;
     width:260px;
     height:160px;
-=======
-    width: 100%;
-    height: 160px;
-    margin: 0;
->>>>>>> Stashed changes
 }
 .section-projects--photoarea img {
     width:inherit;
@@ -411,51 +366,26 @@ CSS DE ÃREAS ESPECÃFICAS
 
 
 .bg-team {
-<<<<<<< Updated upstream
     background-image:url('../images/bg.jpg');
     background-size:cover;
     background-position:center;
     padding:0;
-=======
-    background: url('../images/bg.jpg');
-    background-size: cover;
-    background-position: center;
-    padding: 0;
->>>>>>> Stashed changes
 }
-
 .section-team-area {
-<<<<<<< Updated upstream
     background-color:rgba(0, 0, 0, 0.8);
     padding-top:50px;
     padding-bottom:50px;
-=======
-    background-color: rgba(0, 0, 0, 0.8);
-    padding-top: 50px;
-    padding-bottom: 50px;
-    margin: auto;
->>>>>>> Stashed changes
 }
-
 .section-team {
-<<<<<<< Updated upstream
     overflow:hidden;
     max-width:880px;
     margin:auto;
-=======
-    overflow: hidden;
-    max-width: 880px;
-    margin: auto;
->>>>>>> Stashed changes
 }
-
 .section-team .sliders {
     width:1000vw;
     height:100%;
 }
-
 .section-team .slide {
-<<<<<<< Updated upstream
     width:280px;
     height:100%;
     min-height:300px;
@@ -467,26 +397,11 @@ CSS DE ÃREAS ESPECÃFICAS
     display:flex;
     flex-direction:column;
     height:100%;
-=======
-    width: 280px;
-    height: 100%;
-    min-height: 300px;
-    display: inline-block;
-    background-color: #FFF;
-    margin-left: 10px;
-}
-
-.section-team .slidearea {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
->>>>>>> Stashed changes
     justify-content: center;
     align-items:center;
     color:#000;
     padding:30px;
 }
-
 .section-team-area .sliders-pointers {
     margin-top:30px;
     height:20px;
@@ -494,7 +409,6 @@ CSS DE ÃREAS ESPECÃFICAS
     justify-content: center;
     align-items: center;
 }
-
 .section-team-area .pointer {
     width:15px;
     height:15px;
@@ -507,30 +421,25 @@ CSS DE ÃREAS ESPECÃFICAS
 .section-team-area .pointer.active {
     background-color:#B28756;
 }
-
 .section-team--avatar {
     width:150px;
     height:auto;
 }
-
 .section-team--name {
     text-transform: uppercase;
     font-weight: 600;
     font-size:17px;
     margin-top:30px;
 }
-
 .section-team--role {
     font-size:14px;
     color:#999;
     margin-top:5px;
 }
-
 .section-team--social {
     display:flex;
     margin-top:20px;
 }
-
 .section-team--social a {
     display:inline-flex;
     justify-content: center;
@@ -541,9 +450,7 @@ CSS DE ÃREAS ESPECÃFICAS
     border-radius:13px;
     margin-right:10px;
 }
-
 .section-team--social a:hover {
-<<<<<<< Updated upstream
     background-color:#B28756;
 }
 
@@ -898,6 +805,18 @@ CSS DE ÃREAS ESPECÃFICAS
 }
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 @media (min-width:450px) and (max-width:800px) {
     .logo {
         margin-left:30px;
@@ -909,427 +828,6 @@ CSS DE ÃREAS ESPECÃFICAS
     }
     nav {
         display:none;
-=======
-    background-color: #b28756;
-}
-
-.testimonials .section-body {
-    max-width: initial;
-}
-
-.section-testimonials {
-    overflow: hidden;
-}
-
-.section-testimonials .sliders {
-    width: 1000vw;
-    height: 100%;
-}
-
-.section-testimonials .slide {
-    width: 100vw;
-    height: 100%;
-    display: inline-block;
-}
-
-.section-testimonials .slidearea {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-}
-
-.section-testimonials--avatar {
-    width: 100px;
-}
-
-.section-testimonials--name {
-    font-weight: bold;
-    font-size: 16px;
-    margin-top: 20px;
-}
-
-.section-testimonials--role {
-    font-size: 14px;
-}
-
-.section-testimonials--quoteimg {
-    width: 20px;
-    margin-top: 30px;
-}
-
-.section-testimonials--quote {
-    margin-top: 10px;
-    font-size: 13px;
-    max-width: 700px;
-    color: #555;
-    text-align: center;
-    line-height: 25px;
-    margin-left: 30px;
-    margin-right: 30px;
-}
-
-.section-testimonials .sliders-pointers {
-    width: 100vw;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-}
-
-.section-testimonials .pointer {
-    width: 15px;
-    height: 15px;
-    border: 2px solid #B28756;
-    border-radius: 8px;
-    margin-left: 5px;
-    margin-right: 5px;
-    cursor: pointer;
-}
-
-.section-testimonials .pointer.active {
-    background-color: #B28756;
-}
-
-.section-companies {
-    border-top: 1px solid #DDD;
-    border-bottom: 1px solid #DDD;
-}
-
-.section-companies--area {
-    display: flex;
-    align-items: center;
-}
-
-.section-company {
-    flex: 1;
-    text-align: center;
-}
-
-.section-price {
-    display: flex;
-}
-
-.section-price--item {
-    flex: 1;
-    background-color: #FFF;
-    margin-right: 20px;
-    padding: 20px;
-    text-align: center;
-}
-
-.section-price--item:last-child {
-    margin-right: 0;
-}
-
-.section-price--item-name {
-    text-transform: uppercase;
-    font-size: 13px;
-    font-weight: 600;
-}
-
-.section-price--item-money {
-    font-weight: bold;
-    font-size: 22px;
-    margin-top: 10px;
-}
-
-.section-price--item-period {
-    color: #999;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-}
-
-.section-price--item-point {
-    font-size: 12px;
-}
-
-.premium {
-    background-color: #FFF !important;
-    border-top: 1px solid #CCC;
-}
-
-.premium .section-body {
-    max-width: initial;
-}
-
-.section-premium {
-    overflow: hidden;
-}
-
-.section-premium a {
-    margin-top: 30px;
-}
-
-.section-premium .sliders {
-    width: 1000vw;
-    height: 100%;
-}
-
-.section-premium .slide {
-    width: 100vw;
-    height: 100%;
-    display: inline-block;
-}
-
-.section-premium .slidearea {
-    display: flex;
-    height: 100%;
-    justify-content: center;
-    align-items: center;
-    max-width: 1140px;
-    border-bottom: 1px solid #CCC;
-    margin: auto;
-    padding-bottom: 40px;
-}
-
-.section-premium--left {
-    flex: 1;
-    text-align: right;
-}
-
-.section-premium--left img {
-    width: 300px;
-    margin-right: 30px;
-}
-
-.section-premium--right {
-    flex: 1;
-}
-
-.section-premium--item {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.section-premium--item img {
-    width: 20px;
-    height: 20px;
-    margin-right: 20px;
-}
-
-.section-premium--item div {
-    flex: 1;
-    color: #999;
-    line-height: 20px;
-}
-
-.section-premium--item div h4 {
-    color: #000;
-    font-size: 17px;
-    font-weight: 600;
-}
-
-.section-premium .sliders-pointers {
-    width: 100vw;
-    height: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 40px;
-}
-
-.section-premium .pointer {
-    width: 15px;
-    height: 15px;
-    border: 2px solid #B28756;
-    border-radius: 8px;
-    margin-left: 5px;
-    margin-right: 5px;
-    cursor: pointer;
-}
-
-.section-premium .pointer.active {
-    background-color: #B28756;
-}
-
-.section-facts {
-    display: flex;
-}
-
-.section-fact {
-    flex: 1;
-    text-align: center;
-    padding: 15px;
-}
-
-.section-fact h3 {
-    color: #B28756;
-    font-size: 45px;
-}
-
-.section-fact-line {
-    width: 20px;
-    border-bottom: 2px solid #B28756;
-    margin: auto;
-}
-
-.section-fact h4 {
-    margin-top: 20px;
-    text-transform: uppercase;
-    font-size: 18px;
-}
-
-.section-fact p {
-    margin-top: 10px;
-    font-size: 13px;
-    color: #999;
-}
-
-.section-share {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background-color: #FFF;
-    color: #999;
-}
-
-.section-share--legend {
-    display: flex;
-    align-items: center;
-    margin-right: 40px;
-}
-
-.section-share--legend img {
-    margin-right: 10px;
-}
-
-.section-share--item {
-    font-size: 12px;
-    margin-right: 20px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-}
-
-.section-share--icon {
-    width: 30px;
-    height: 30px;
-    border-radius: 15px;
-    background-color: #CCC;
-    margin-right: 5px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.section-share--icon img {
-    height: 12px;
-}
-
-.section-share--icon.twitter {
-    background-color: #34c5f0;
-}
-
-.section-share--icon.linkedin {
-    background-color: #127cb4;
-}
-
-.section-share--icon.facebook {
-    background-color: #336297;
-}
-
-.section-share--icon.googleplus {
-    background-color: #e74237;
-}
-
-.section-share--icon.pinterest {
-    background-color: #b71c29;
-}
-
-.section-contact {
-    max-width: 450px;
-    margin: auto;
-    text-align: center;
-}
-
-.section-contact input[type=text],
-.section-contact textarea {
-    display: block;
-    width: 100%;
-    height: 40px;
-    border: 0;
-    background: transparent;
-    border-bottom: 1px solid #CCC;
-    outline: 0;
-    margin-top: 10px;
-}
-
-.section-contact textarea {
-    height: 100px;
-    resize: none;
-}
-
-.section-contact--split {
-    display: flex;
-}
-
-.section-contact--split input:first-child {
-    margin-right: 20px;
-}
-
-.section-map {
-    background-image: url('../images/mapa.jpg');
-    background-size: cover;
-    background-position: center;
-    padding-top: 30px;
-    padding-bottom: 30px;
-}
-
-.section-map--area {
-    width: 100vw;
-    max-width: 1140px;
-    margin: auto;
-}
-
-.section-map--info {
-    width: 50%;
-    padding: 30px;
-    background-color: #FFF;
-    color: #000;
-}
-
-.section-map--info-item {
-    display: flex;
-    align-items: center;
-    color: #999;
-    margin-bottom: 10px;
-}
-
-.section-map--info-item-img {
-    width: 30px;
-    height: 30px;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    padding: 5px;
-    background-color: #999;
-    border-radius: 15px;
-    margin-right: 15px;
-}
-
-.section-map--info-item-img img {
-    width: 15px;
-    height: auto;
-}
-
-@media (min-width:450px) and (max-width:800px) {
-    .logo {
-        margin-left: 30px;
-    }
-
-    .menu-opener {
-        display: block;
-        width: 45px;
-        margin-right: 30px;
-    }
-
-    nav {
-        display: none;
->>>>>>> Stashed changes
         position: absolute;
         z-index: 99;
         background-color: rgba(0, 0, 0, 0.9);
@@ -1338,7 +836,6 @@ CSS DE ÃREAS ESPECÃFICAS
         top: 100px;
         right: 0;
     }
-<<<<<<< Updated upstream
     .menu ul {
         flex-direction:column;
     }
@@ -1353,29 +850,10 @@ CSS DE ÃREAS ESPECÃFICAS
     .menu li.active a {
         border:0;
         color:#B28756;
-=======
-
-    .menu ul {
-        flex-direction: column;
-    }
-
-    .menu li a {
-        font-weight: bold;
-        height: 80px;
-        font-size: 27px;
-        margin-left: 50px;
-        border: 0;
-    }
-
-    .menu li.active a {
-        border: 0;
-        color: #B28756;
->>>>>>> Stashed changes
     }
 
 
     .section-aboutus {
-<<<<<<< Updated upstream
         flex-direction:column;
     }
     .section-aboutus--left {
@@ -1420,63 +898,10 @@ CSS DE ÃREAS ESPECÃFICAS
     }
     .section-fact {
         min-width:50%;
-=======
-        flex-direction: column;
-    }
-
-    .section-aboutus--left {
-        margin-left: 30px;
-        margin-right: 30px;
-        margin-bottom: 30px;
-    }
-
-    .section-aboutus--right {
-        width: auto;
-    }
-
-    .section-services {
-        flex-wrap: wrap;
-    }
-
-    .section-service {
-        min-width: 50%;
-        margin-bottom: 30px;
-    }
-
-    .section-service:first-child {
-        border-left: 0;
-    }
-
-    .section-team {
-        max-width: 580px;
-    }
-
-    .section-price {
-        flex-wrap: wrap;
-    }
-
-    .section-price--item {
-        margin-left: 20px;
-        min-width: calc(50% - 40px);
-        margin-bottom: 20px;
-    }
-
-    .section-price--item:last-child {
-        margin-right: 20px;
-    }
-
-    .section-facts {
-        flex-wrap: wrap;
-    }
-
-    .section-fact {
-        min-width: 50%;
->>>>>>> Stashed changes
     }
 
 
     .section-map {
-<<<<<<< Updated upstream
         padding-left:30px;
         padding-right:30px;
     }
@@ -1491,33 +916,12 @@ CSS DE ÃREAS ESPECÃFICAS
     }
     .section-map--info-item:last-child {
         margin-bottom:0;
-=======
-        padding-left: 30px;
-        padding-right: 30px;
-    }
-
-    .section-map--area {
-        width: auto;
-    }
-
-    .section-map--info {
-        width: auto;
-    }
-
-    .section-map--info-item {
-        margin-bottom: 20px;
-    }
-
-    .section-map--info-item:last-child {
-        margin-bottom: 0;
->>>>>>> Stashed changes
     }
 }
 
 
 @media (max-width:450px) {
     .logo {
-<<<<<<< Updated upstream
         margin-left:30px;
     }
     .menu-opener {
@@ -1527,19 +931,6 @@ CSS DE ÃREAS ESPECÃFICAS
     }
     nav {
         display:none;
-=======
-        margin-left: 30px;
-    }
-
-    .menu-opener {
-        display: block;
-        width: 45px;
-        margin-right: 30px;
-    }
-
-    nav {
-        display: none;
->>>>>>> Stashed changes
         position: absolute;
         z-index: 99;
         background-color: rgba(0, 0, 0, 0.9);
@@ -1548,7 +939,6 @@ CSS DE ÃREAS ESPECÃFICAS
         top: 100px;
         right: 0;
     }
-<<<<<<< Updated upstream
     .menu ul {
         flex-direction:column;
     }
@@ -1570,37 +960,10 @@ CSS DE ÃREAS ESPECÃFICAS
     }
     .banner h2 {
         font-size:17px;
-=======
-
-    .menu ul {
-        flex-direction: column;
-    }
-
-    .menu li a {
-        font-weight: bold;
-        height: 60px;
-        font-size: 20px;
-        margin-left: 30px;
-        border: 0;
-    }
-
-    .menu li.active a {
-        border: 0;
-        color: #B28756;
-    }
-
-    .banner h1 {
-        font-size: 30px;
-    }
-
-    .banner h2 {
-        font-size: 17px;
->>>>>>> Stashed changes
     }
 
 
     .section-aboutus {
-<<<<<<< Updated upstream
         flex-direction:column;
     }
     .section-aboutus--left {
@@ -1648,69 +1011,12 @@ CSS DE ÃREAS ESPECÃFICAS
     .section-companies--area {
         flex-wrap:wrap;
     }
-=======
-        flex-direction: column;
-    }
-
-    .section-aboutus--left {
-        margin-left: 30px;
-        margin-right: 30px;
-        margin-bottom: 30px;
-    }
-
-    .section-aboutus--right {
-        width: auto;
-        margin-left: 30px;
-        margin-right: 30px;
-    }
-
-    .section-aboutus--right img {
-        width: 100%;
-    }
-
-    .section-services {
-        flex-wrap: wrap;
-    }
-
-    .section-service {
-        min-width: 100%;
-        margin-bottom: 30px;
-    }
-
-    .section-service:first-child {
-        border-left: 0;
-    }
-
-    .section-projects--filters {
-        margin-left: 30px;
-        margin-right: 30px;
-    }
-
-    .section-projects--photo {
-        width: 320px;
-    }
-
-    .section-projects--photoarea {
-        width: 300px;
-        height: 190px;
-    }
-
-    .section-team {
-        max-width: 280px;
-    }
-
-    .section-companies--area {
-        flex-wrap: wrap;
-    }
-
->>>>>>> Stashed changes
     .section-company {
         min-width: 50%;
         margin-bottom: 20px;
     }
 
     .section-price {
-<<<<<<< Updated upstream
         flex-wrap:wrap;
     }
     .section-price--item {
@@ -1720,25 +1026,11 @@ CSS DE ÃREAS ESPECÃFICAS
     }
     .section-price--item:last-child {
         margin-right:20px;
-=======
-        flex-wrap: wrap;
-    }
-
-    .section-price--item {
-        margin-left: 20px;
-        min-width: calc(100% - 40px);
-        margin-bottom: 20px;
-    }
-
-    .section-price--item:last-child {
-        margin-right: 20px;
->>>>>>> Stashed changes
     }
 
     .section-premium .slidearea {
         flex-direction: column;
     }
-<<<<<<< Updated upstream
     .section-premium--left {
         text-align:center;
         margin-bottom:30px;
@@ -1765,39 +1057,6 @@ CSS DE ÃREAS ESPECÃFICAS
         margin-bottom:30px;
         justify-content: center;
     }
-=======
-
-    .section-premium--left {
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    .section-premium--right {
-        padding-left: 20px;
-        padding-right: 20px;
-    }
-
-    .section-facts {
-        flex-wrap: wrap;
-    }
-
-    .section-fact {
-        min-width: 100%;
-    }
-
-    .section-share {
-        flex-wrap: wrap;
-        justify-content: flex-start;
-    }
-
-    .section-share--legend {
-        width: 100vw;
-        margin: 0;
-        margin-bottom: 30px;
-        justify-content: center;
-    }
-
->>>>>>> Stashed changes
     .section-share--item {
         min-width: 50%;
         max-width: 50%;
@@ -1805,7 +1064,6 @@ CSS DE ÃREAS ESPECÃFICAS
         justify-content: center;
         flex-direction: column;
         margin-bottom: 20px;
-<<<<<<< Updated upstream
         
     }
 
@@ -1814,23 +1072,11 @@ CSS DE ÃREAS ESPECÃFICAS
         margin-left:20px;
         margin-right:20px;
     }
-=======
-
-    }
-
-    .section-contact {
-        max-width: 100vw;
-        margin-left: 20px;
-        margin-right: 20px;
-    }
-
->>>>>>> Stashed changes
     .section-contact--split {
         flex-direction: column;
     }
 
     .section-map {
-<<<<<<< Updated upstream
         padding:0;
         padding-bottom:250px;
     }
@@ -1853,36 +1099,6 @@ CSS DE ÃREAS ESPECÃFICAS
     .footer--item {
         margin-bottom:20px;
     }
-=======
-        padding: 0;
-        padding-bottom: 250px;
-    }
-
-    .section-map--area {
-        width: auto;
-    }
-
-    .section-map--info {
-        width: auto;
-    }
-
-    .section-map--info-item {
-        margin-bottom: 20px;
-    }
-
-    .section-map--info-item:last-child {
-        margin-bottom: 0;
-    }
-
-    .footer--area {
-        flex-direction: column;
-    }
-
-    .footer--item {
-        margin-bottom: 20px;
-    }
-
->>>>>>> Stashed changes
     .footer-social {
         justify-content: center;
     }
