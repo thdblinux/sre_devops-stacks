@@ -25,6 +25,7 @@ module "service" {
     data.aws_ssm_parameter.private_subnet_3.value,
   ]
 
+<<<<<<< Updated upstream
   #Autoscaling
 
   scale_type = var.scale_type
@@ -54,4 +55,34 @@ module "service" {
 
   alb_arn                      = data.aws_ssm_parameter.alb.value  
   scale_tracking_requests      = var.scale_tracking_requests
+=======
+  # Autoscaling
+
+  task_minimun = var.task_minimum
+  task_maximum = var.task_maximum
+  scaale_type  = var.scaale_type
+
+  ### Autoscaling de CPU
+
+  scale_out_cpu_threshold          = var.scale_out_cpu_threshold
+  scale_out_adjustment             = var.scale_out_adjustment
+  scale_out_comparison_operator    = var.scale_out_comparison_operator
+  scale_out_statistc               = var.scale_out_statistc
+  scale_in_period                  = var.scale_out_period
+  scale_out_cpu_evaluation_periods = var.scale_out_evaluation_periods
+  scale_out_cooldown               = var.scale_out_cooldown
+
+  scale_in_cpu_threshold          = var.scale_in_cpu_threshold
+  scale_in_adjustment             = var.scale_in_adjustment
+  scale_in_comparison_operator    = var.scale_in_comparison_operator
+  scale_in_statistc               = var.scale_in_statistc
+  scale_inperiod                  = var.scale_in_period
+  scale_in_cpu_evaluation_periods = var.scale_in_evaluation_periods
+  scale_in_cooldown               = var.scale_in_cooldown
+
+  scale_tracking_cpu = var.scale_tracking_cpu
+
+  alb_arn                 = data.aws_ssm_parameter.alb.value
+  scale_tracking_requests = var.scale_tracking_requests
+>>>>>>> Stashed changes
 }
