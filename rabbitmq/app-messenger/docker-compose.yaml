@@ -1,0 +1,24 @@
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: rabbitmq
+    hostname: rabbitmq
+    restart: always
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 750M
+        reservations:
+          cpus: '0.25'
+          memory: 512M
+    environment:
+      - 'RABBITMQ_DEFAULT_USER=accessadmin'
+      - 'RABBITMQ_DEFAULT_PASS=35lkK69gwoF0hGBb'
+    ports:
+      - 15672:15672
+      - 5672:5672
+    volumes:
+      - /home/admdesenv/app/rabbit-mq/docker/data/:/var/lib/rabbitmq/
+      - /home/admdesenv/app/rabbit-mq/docker/log/:/var/log/rabbitmq
+      - ./integracao-magaluloja1-cdd.sh:/usr/local/bin/integracao-magaluloja1-cdd.sh

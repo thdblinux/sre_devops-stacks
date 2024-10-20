@@ -1,9 +1,10 @@
 import pika
 import json
+import time
 
 # Configurações de conexão
-rabbitmq_host = '10.2.13.71'  # Substitua pelo IP do seu servidor RabbitMQ
-vhost = 'eco_dev'
+rabbitmq_host = 'localhost'
+vhost = 'magaluloja1'
 username = 'accessadmin'
 password = '35lkK69gwoF0hGBb'
 
@@ -29,9 +30,16 @@ parameters = pika.ConnectionParameters(host=rabbitmq_host, virtual_host=vhost, c
 connection = pika.BlockingConnection(parameters)
 channel = connection.channel()
 
-# Enviar a mensagem
-channel.basic_publish(exchange='e.sigma.stok.pedido.create', routing_key='', body=json.dumps(message))
-print("Mensagem enviada:", message)
+try:
+    while True:
+        # Enviar a mensagem
+        channel.basic_publish(exchange='e.magalo.order.create', routing_key='', body=json.dumps(message))
+        print("Mensagem enviada:", message)
 
-# Fechar a conexão
+        # Aguardar 2 segundos antes de enviar a próxima mensagem
+        time.sleep(2)
+except KeyboardInterrupt:
+    print("Envio de mensagens interrompido.")
+
+# Fechar a conexão ao final do envio
 connection.close()
