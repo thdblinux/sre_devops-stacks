@@ -1,15 +1,15 @@
-# Explicação Simples do Fluxo de Mensageria
+# Explicação Simples do Fluxo de Mensageria entre a NASA e Startrek
 
 ## Analogia
-Pense no sistema de mensageria como um sistema de entrega de cartas.
+Imagine o fluxo de mensageria entre a NASA e Startrek como a comunicação interestelar entre duas estações espaciais, com cada parte desempenhando um papel específico no envio e recebimento de mensagens.
 
-- **Exchange**: É como um centro de distribuição de cartas. Recebe as cartas (mensagens) e decide para onde elas devem ir. No nosso exemplo, estamos usando o exchange `amq.topic`, que direciona as mensagens baseadas em tipos específicos.
+- **Estação Espacial Exchange**: É como um centro de distribuição de cartas. Recebe as cartas (mensagens) e decide para onde elas devem ir. No nosso exemplo, estamos usando o exchange `amq.topic`, que direciona as mensagens baseadas em tipos específicos. Entre NASA e Startrek, há uma Exchange, que pode ser vista como um centro de distribuição espacial. Ela recebe as mensagens da NASA e as direciona corretamente para Startrek, de acordo com o tipo de comunicação (ex. dados de coordenação de voo ou atualizações de status).
 
 - **Fila (Queue)**: São as gavetas de cartas. Cada gaveta recebe cartas de acordo com o endereço (routing key). Neste caso, temos filas que armazenam as mensagens até que um consumidor esteja pronto para lê-las.
 
-- **Produtor (Producer)**: É quem escreve e envia cartas. No nosso caso, é o script `send_message.py`. Ele cria a mensagem e a publica na exchange.
+- **NASA Produtor (Producer)**: A NASA é o responsável por criar e enviar as mensagens para Startrek. Em termos de um sistema de mensageria, a NASA atua como o Produtor, gerando dados sobre missões espaciais, coordenadas e comandos que são transmitidos. É quem escreve e envia cartas. No nosso caso, é o script `send_message.py`. Ele cria a mensagem e a publica na exchange.
 
-- **Consumidor (Consumer)**: É quem recebe e lê as cartas. Neste caso, é o script `receive_message.py`. Ele se conecta à fila e espera por mensagens.
+- **Startrek Consumidor (Consumer)**: É quem recebe e lê as cartas. Neste caso, é o script `receive_message.py`. Ele se conecta à fila e espera por mensagens. Startrek é a nave estelar que recebe essas mensagens e executa as ações necessárias. Aqui, Startrek funciona como o Consumidor, processando as mensagens que chegam e aplicando-as às suas operações, como manobras e atualizações de status.
 
 - **Conexões (Connections)**: É como o caminho entre o produtor e o consumidor. Quando o produtor envia uma mensagem ou o consumidor lê uma mensagem, uma conexão é estabelecida entre eles através do RabbitMQ.
 
@@ -54,16 +54,15 @@ Mensagem enviada: {
         "qtdTotalItens": 2
     }
 }
-
 ```
-### Passo 2: Aguardando Mensagens
-O script `receive_message.py` é responsável por ouvir as mensagens que chegam à fila. Ele está em um loop, esperando por novas mensagens.
+**Passo 2: Aguardando Mensagens**
 
+O script receive_message.py é responsável por ouvir as mensagens que chegam à fila. Ele está em um loop, esperando por novas mensagens.
 ```bash
 python3 receive_message.py
 ```
-
 Quando uma mensagem chega, você verá:
+
 ```bash
 Aguardando mensagens. Para sair, pressione CTRL+C
 Recebido b"{
@@ -87,6 +86,7 @@ Recebido b"{
 }"
 ```
 ## Destaques do Processo
+
 - **Durabilidade:** As mensagens enviadas são armazenadas de forma durável, o que significa que mesmo que o sistema falhe, as mensagens não serão perdidas.
 - **Desacoplamento:** O produtor e o consumidor estão desacoplados. Isso significa que eles não precisam estar ativos ao mesmo tempo, permitindo maior flexibilidade e escalabilidade no sistema.
 - **Roteamento:** O uso de routing keys permite que as mensagens sejam direcionadas para as filas corretas. Neste caso, estamos usando uma chave de roteamento para que a mensagem do pedido seja enviada para a fila apropriada.
@@ -94,66 +94,3 @@ Recebido b"{
 
 ## Conclusão
 Esse fluxo de mensageria facilita a comunicação entre diferentes partes do sistema, permitindo que a aplicação envie e receba dados de forma eficiente e confiável. É uma maneira eficaz de garantir que informações importantes sejam entregues e processadas, mesmo que as partes que enviam e recebem não estejam sempre disponíveis.
-
-## Configurações Comuns do RabbitMQ
-```bash
-# Criar vhosts
-rabbitmqctl add_vhost eco_dev
-rabbitmqctl add_vhost eco_hml
-
-# Definir permissões para o usuário admin no vhost
-rabbitmqctl set_permissions -p "eco_dev" "accessadmin" ".*" ".*" ".*"
-rabbitmqctl set_permissions -p "eco_hml" "accessadmin" ".*" ".*" ".*"
-
-# Criar usuários
-rabbitmqctl add_user 'sigma42dh9q' '%Rb6y%@gdqdjsKZT%0d.'
-rabbitmqctl add_user 'stok42dh9q' ')uD!WSamN4OQ>;K,SQN1'
-
-# Comentar as linhas abaixo para desabilitar o acesso ao console web
-rabbitmqctl set_user_tags 'sigma42dh9q' 'monitoring'
-rabbitmqctl set_user_tags 'stok42dh9q' 'administrator'
-```
-## Configurar vhost ECO_DEV
-
-```bash
-# Criar Exchanges
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare exchange --vhost=eco_dev name=e.stok.sigma.insumo.change type=direct
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare exchange --vhost=eco_dev name=e.sigma.stok.pedido.create type=direct
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare exchange --vhost=eco_dev name=e.pedido.create.dlq type=direct
-
-# Criar Filas
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare queue --vhost=eco_dev name=q.stok.sigma.insumo.change durable=true
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare queue --vhost=eco_dev name=q.sigma.stok.pedido.create durable=true
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare queue --vhost=eco_dev name=q.stok.pedido.create.dlq durable=true
-
-# Bindings
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare binding --vhost=eco_dev source="e.stok.sigma.insumo.change" destination_type="queue" destination="q.stok.sigma.insumo.change"
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare binding --vhost=eco_dev source="e.sigma.stok.pedido.create" destination_type="queue" destination="q.sigma.stok.pedido.create"
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare binding --vhost=eco_dev source="e.pedido.create.dlq" destination_type="queue" destination="q.stok.pedido.create.dlq"
-
-# Definir permissões
-rabbitmqctl set_permissions -p eco_dev 'sigma42dh9q' '' 'e.sigma.stok.pedido.create' 'q.stok.sigma.insumo.change'
-rabbitmqctl set_permissions -p eco_dev 'stok42dh9q' '' 'e.stok.sigma.insumo.change|e.pedido.create.dlq' 'q.sigma.stok.pedido.create|q.stok.pedido.create.dlq'
-```
-
-## Configurar vhost ECO_HML
-```bash
-# Criar Exchanges
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare exchange --vhost=eco_hml name=e.stok.sigma.insumo.change type=direct
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare exchange --vhost=eco_hml name=e.sigma.stok.pedido.create type=direct
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare exchange --vhost=eco_hml name=e.pedido.create.dlq type=direct
-
-# Criar Filas
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare queue --vhost=eco_hml name=q.stok.sigma.insumo.change durable=true
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare queue --vhost=eco_hml name=q.sigma.stok.pedido.create durable=true
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare queue --vhost=eco_hml name=q.stok.pedido.create.dlq durable=true
-
-# Bindings
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare binding --vhost=eco_hml source="e.stok.sigma.insumo.change" destination_type="queue" destination="q.stok.sigma.insumo.change"
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare binding --vhost=eco_hml source="e.sigma.stok.pedido.create" destination_type="queue" destination="q.sigma.stok.pedido.create"
-rabbitmqadmin --username=accessadmin --password=35lkK69gwoF0hGBb declare binding --vhost=eco_hml source="e.pedido.create.dlq" destination_type="queue" destination="q.stok.pedido.create.dlq"
-
-# Definir permissões
-rabbitmqctl set_permissions -p eco_hml 'sigma42dh9q' '' 'e.sigma.stok.pedido.create' 'q.stok.sigma.insumo.change'
-rabbitmqctl set_permissions -p eco_hml 'stok42dh9q' '' 'e.stok.sigma.insumo.change|e.pedido.create.dlq' 'q.sigma.stok.pedido.create|q.stok.pedido.create.dlq'
-```
