@@ -1,5 +1,4 @@
 #!/bin/bash
-
 SOLUTION_HOME=${HOME}/app/rabbit-mq
 DUMP_DIR=${HOME}/app/rabbit-mq/backup
 BACKUP_PREFIX=rabbitmq-bkp
