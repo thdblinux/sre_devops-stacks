@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: spark-job
+spec:
+  template:
+    spec:
+      containers:
+        - name: spark-job
+          image: bitnami/spark:3.5.3
+          command: ["/bin/bash", "-c", "/opt/spark/bin/spark-submit --master k8s://https://kubernetes.default.svc --deploy-mode cluster --name spark-job --conf spark.kubernetes.container.image=bitnami/spark:3.5.3 /opt/spark/my_spark_job.py"]
+          env:
+            - name: SPARK_HOME
+              value: "/opt/spark"
+          volumeMounts:
+            - name: spark-scripts
+              mountPath: /opt/spark/my_spark_job.py
+              subPath: my_spark_job.py  
+      restartPolicy: Never
+      volumes:
+        - name: spark-scripts
+          configMap:
+            name: spark-scripts
+  backoffLimit: 4

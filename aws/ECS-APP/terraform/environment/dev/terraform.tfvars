@@ -6,11 +6,21 @@ service_name = "chip"
 
 service_port = 8080
 
-service_cpu = 256
-
+service_cpu    = 256
 service_memory = 512
 
-service_launch_type = "EC2"
+# Ajuste o tipo de lançamento para uma string, como "FARGATE" ou "FARGATE_SPOT"
+service_launch_type = [
+  {
+    capacity_provider = "FARGATE"
+    weight            = 50
+  },
+  {
+    capacity_provider = "FARGATE_SPOT"
+    weight            = 50
+  }
+
+]
 
 service_task_count = 3
 
@@ -31,23 +41,16 @@ service_hosts = [
 ]
 
 environment_variables = [
-  {
-    Name  = "FOO",
-    Value = "BAR"
-  },
-  {
-    Name  = "PING",
-    Value = "PONG"
-  }
 ]
 
-capabilities = ["EC2"]
+# As capacidades devem ser compatíveis com o tipo de lançamento Fargate
+capabilities = ["EC2"] # Altere para "FARGATE" se estiver usando Fargate
 
 service_healthcheck = {
   healthy_threshold   = 3
   unhealthy_threshold = 10
   path                = "/healthcheck"
-  Port                = 8080
+  port                = 8080
   timeout             = 10
   interval            = 60
   matcher             = "200-399"
@@ -77,3 +80,5 @@ scale_in_cooldown            = 60
 
 scale_tracking_cpu      = 50
 scale_tracking_requests = 30
+
+ssm_service_discovery_namespace = "/mandalor/ecs/cloudmap/namespace"
