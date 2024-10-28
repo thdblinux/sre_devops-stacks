@@ -16,10 +16,10 @@ spec:
     spec:
       containers:
         - name: rabbitmq
-          image: rabbitmq:3.12.14-management-alpine
+          image: rabbitmq:3-management
           ports:
-            - containerPort: 5672  # Porta para comunicação do RabbitMQ
-            - containerPort: 15672  # Porta para a interface de gerenciamento
+            - containerPort: 5672
+            - containerPort: 15672
           env:
             - name: RABBITMQ_DEFAULT_USER
               value: accessadmin
