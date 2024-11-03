@@ -37,7 +37,7 @@ ssm_private_subnet_3 = "/mandalor-vpc/vpc/subnet_private_1c"
 ssm_alb = "/mandalor/ecs/lb/id"
 
 service_hosts = [
-  "chip.mandalor.demo"
+  "app.mandalor.demo"
 ]
 
 environment_variables = [
