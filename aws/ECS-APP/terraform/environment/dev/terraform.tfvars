@@ -37,24 +37,32 @@ ssm_private_subnet_3 = "/mandalor-vpc/vpc/subnet_private_1c"
 ssm_alb = "/mandalor/ecs/lb/id"
 
 service_hosts = [
-  "app.mandalor.demo"
+  "chip.mandalor.demo"
 ]
 
 environment_variables = [
+  {
+    name  = "FOO",
+    value = "BAR"
+  },
+  {
+    name  = "PING",
+    value = "PONG"
+  }
 ]
 
-# As capacidades devem ser compatíveis com o tipo de lançamento Fargate
-capabilities = ["EC2"] # Altere para "FARGATE" se estiver usando Fargate
+capabilities = ["EC2"]
 
 service_healthcheck = {
   healthy_threshold   = 3
   unhealthy_threshold = 10
-  path                = "/healthcheck"
-  port                = 8080
   timeout             = 10
   interval            = 60
   matcher             = "200-399"
+  path                = "/healthcheck"
+  port                = 8080
 }
+
 
 scale_type   = "requests_tracking"
 task_minimum = 3
@@ -78,7 +86,5 @@ scale_in_period              = 60
 scale_in_evaluation_periods  = 2
 scale_in_cooldown            = 60
 
-scale_tracking_cpu      = 50
-scale_tracking_requests = 30
-
-ssm_service_discovery_namespace = "/mandalor/ecs/cloudmap/namespace"
+scale_tracking_cpu           = 50
+scale_tracking_requests      = 30

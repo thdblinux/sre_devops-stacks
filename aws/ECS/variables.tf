@@ -10,8 +10,6 @@ variable "region" {
   type        = string
 }
 
-##### SSM VPC #####
-
 variable "ssm_vpc_id" {
   description = "O ID da VPC onde os recursos relacionados ao SSM serão criados."
   type        = string
@@ -48,7 +46,6 @@ variable "ssm_private_subnet_3" {
 }
 
 ##### Balancer #####
-
 variable "load_balancer_internal" {
   description = "Define se o Load Balancer deve ser interno (true) ou externo (false)."
   type        = bool
@@ -60,7 +57,6 @@ variable "load_balancer_type" {
 }
 
 #### ECS General ######
-
 variable "nodes_ami" {
   description = "A AMI a ser usada pelos nodes do cluster ECS."
   type        = string
@@ -113,6 +109,7 @@ variable "cluster_spot_desired_size" {
 
 variable "capacity_providers" {
   type = list
+  description = "A lista dos capacity providers que serão permitidos no cluster fargate"
   default = [
     "FARGATE", "FARGATE_SPOT"
   ]
