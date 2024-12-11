@@ -1,0 +1,10 @@
+PostgreSQL datatype
+https://www.postgresql.org/docs/current/datatype.html
+
+
+insert manual postgreSQL
+https://www.postgresql.org/docs/current/dml-insert.html
+
+
+DROP TABLE
+https://www.postgresql.org/docs/current/sql-droptable.html

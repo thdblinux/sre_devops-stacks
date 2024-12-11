@@ -1,0 +1,27 @@
+services:
+  argocd-server:
+    image: argoproj/argocd-server:latest
+    container_name: argocd-server
+    restart: always
+    ports:
+      - 8181:8181
+    volumes:
+      - argocd-data:/home/argocd
+    environment:
+      - ARGOCD_SERVER_INSECURE=true
+      - ARGOCD_OPTS=--insecure
+
+  argocd-repo-server:
+    image: argoproj/argocd-repo-server:latest
+    container_name: argocd-repo-server
+    restart: always
+    volumes:
+      - argocd-repo-data:/home/argocd/repos
+
+volumes:
+  argocd-data:
+  argocd-repo-data:
+
+networks:
+  default:
+    name: argocd-network

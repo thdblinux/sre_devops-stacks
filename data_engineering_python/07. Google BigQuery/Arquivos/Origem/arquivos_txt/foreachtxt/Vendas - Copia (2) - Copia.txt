@@ -1,0 +1,10 @@
+IdVenda,Loja,Produto,Valor,Data
+1,TedLTDA,Notebook,4100,2020-01-30
+2,Tio Lucio,Smartfone,2800,2020-02-03
+3,Tio Lucio,Notebook,3800,2020-02-03
+4,TedLTDA,Smartfone,3100,2020-02-05
+5,Casas SHOP,Notebook,4500,2020-02-05
+6,TedLTDA,Notebook,3800,2020-02-10
+7,Casas SHOP,Smartfone,2700,2020-02-11
+8,Casas SHOP,Smartfone,2500,2020-02-16
+9,Tio Lucio,Smartfone,4000,2020-02-17

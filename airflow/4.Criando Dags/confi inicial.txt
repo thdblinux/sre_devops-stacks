@@ -1,0 +1,21 @@
+#remover dags de exemplo
+#esta variável já existe
+AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
+
+#mostrar configuração
+AIRFLOW__WEBSERVER__EXPOSE_CONFIG: 'true'
+
+#intervalor de parse default é 30
+AIRFLOW__SCHEDULER__MIN_FILE_PROCESS_INTERVAL: 5
+
+#default é 300 - 5 minutos
+AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: 20
+
+#reiniciar
+Docker-compose down
+Docker-compose up -d
+
+
+
+
+

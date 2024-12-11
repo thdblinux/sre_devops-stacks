@@ -1,0 +1,18 @@
+[2024-11-20T19:02:51.564+0000] {processor.py:153} INFO - Started process (PID=1942) to work on /opt/airflow/dags/primeiradag copy.py
+[2024-11-20T19:02:51.565+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/primeiradag copy.py for tasks to queue
+[2024-11-20T19:02:51.566+0000] {logging_mixin.py:137} INFO - [2024-11-20T19:02:51.566+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/primeiradag copy.py
+[2024-11-20T19:02:51.598+0000] {processor.py:753} INFO - DAG(s) dict_keys(['firsty_dag']) retrieved from /opt/airflow/dags/primeiradag copy.py
+[2024-11-20T19:02:51.733+0000] {logging_mixin.py:137} INFO - [2024-11-20T19:02:51.733+0000] {manager.py:504} INFO - Created Permission View: can read on DAG:firsty_dag
+[2024-11-20T19:02:51.747+0000] {logging_mixin.py:137} INFO - [2024-11-20T19:02:51.747+0000] {manager.py:504} INFO - Created Permission View: can edit on DAG:firsty_dag
+[2024-11-20T19:02:51.757+0000] {logging_mixin.py:137} INFO - [2024-11-20T19:02:51.757+0000] {manager.py:504} INFO - Created Permission View: can delete on DAG:firsty_dag
+[2024-11-20T19:02:51.758+0000] {logging_mixin.py:137} INFO - [2024-11-20T19:02:51.758+0000] {dag.py:2690} INFO - Sync 1 DAGs
+[2024-11-20T19:02:51.773+0000] {logging_mixin.py:137} INFO - [2024-11-20T19:02:51.773+0000] {dag.py:2711} INFO - Creating ORM DAG for firsty_dag
+[2024-11-20T19:02:51.780+0000] {logging_mixin.py:137} INFO - [2024-11-20T19:02:51.780+0000] {dag.py:3441} INFO - Setting next_dagrun for firsty_dag to None, run_after=None
+[2024-11-20T19:02:51.797+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/primeiradag copy.py took 0.239 seconds
+[2024-11-20T19:02:56.846+0000] {processor.py:153} INFO - Started process (PID=1943) to work on /opt/airflow/dags/primeiradag copy.py
+[2024-11-20T19:02:56.846+0000] {processor.py:743} INFO - Processing file /opt/airflow/dags/primeiradag copy.py for tasks to queue
+[2024-11-20T19:02:56.847+0000] {logging_mixin.py:137} INFO - [2024-11-20T19:02:56.847+0000] {dagbag.py:538} INFO - Filling up the DagBag from /opt/airflow/dags/primeiradag copy.py
+[2024-11-20T19:02:56.860+0000] {processor.py:753} INFO - DAG(s) dict_keys(['firsty_dag']) retrieved from /opt/airflow/dags/primeiradag copy.py
+[2024-11-20T19:02:56.875+0000] {logging_mixin.py:137} INFO - [2024-11-20T19:02:56.874+0000] {dag.py:2690} INFO - Sync 1 DAGs
+[2024-11-20T19:02:56.903+0000] {logging_mixin.py:137} INFO - [2024-11-20T19:02:56.903+0000] {dag.py:3441} INFO - Setting next_dagrun for firsty_dag to None, run_after=None
+[2024-11-20T19:02:56.923+0000] {processor.py:175} INFO - Processing /opt/airflow/dags/primeiradag copy.py took 0.081 seconds

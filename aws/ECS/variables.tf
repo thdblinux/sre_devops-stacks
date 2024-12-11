@@ -110,10 +110,3 @@ variable "cluster_spot_desired_size" {
   description = "O número desejado de instâncias spot no cluster ECS."
   type        = number
 }
-
-variable "capacity_providers" {
-  type = list
-  default = [
-    "FARGATE", "FARGATE_SPOT"
-  ]
-}

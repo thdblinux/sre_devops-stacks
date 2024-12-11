@@ -1,0 +1,52 @@
+[2024-12-01T15:50:16.550+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: email_test.send_email manual__2024-12-01T15:49:59.696862+00:00 [queued]>
+[2024-12-01T15:50:16.560+0000] {taskinstance.py:1083} INFO - Dependencies all met for <TaskInstance: email_test.send_email manual__2024-12-01T15:49:59.696862+00:00 [queued]>
+[2024-12-01T15:50:16.561+0000] {taskinstance.py:1279} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-01T15:50:16.561+0000] {taskinstance.py:1280} INFO - Starting attempt 1 of 2
+[2024-12-01T15:50:16.561+0000] {taskinstance.py:1281} INFO - 
+--------------------------------------------------------------------------------
+[2024-12-01T15:50:16.575+0000] {taskinstance.py:1300} INFO - Executing <Task(EmailOperator): send_email> on 2024-12-01 15:49:59.696862+00:00
+[2024-12-01T15:50:16.579+0000] {standard_task_runner.py:55} INFO - Started process 456 to run task
+[2024-12-01T15:50:16.582+0000] {standard_task_runner.py:82} INFO - Running: ['***', 'tasks', 'run', 'email_test', 'send_email', 'manual__2024-12-01T15:49:59.696862+00:00', '--job-id', '175', '--raw', '--subdir', 'DAGS_FOLDER/email.py', '--cfg-path', '/tmp/tmpfb39cf7h']
+[2024-12-01T15:50:16.583+0000] {standard_task_runner.py:83} INFO - Job 175: Subtask send_email
+[2024-12-01T15:50:16.643+0000] {task_command.py:388} INFO - Running <TaskInstance: email_test.send_email manual__2024-12-01T15:49:59.696862+00:00 [running]> on host 6e7845de4fa8
+[2024-12-01T15:50:16.718+0000] {taskinstance.py:1509} INFO - Exporting the following env vars:
+AIRFLOW_CTX_DAG_EMAIL=marciothadeu1984@gmail.com
+AIRFLOW_CTX_DAG_OWNER=***
+AIRFLOW_CTX_DAG_ID=email_test
+AIRFLOW_CTX_TASK_ID=send_email
+AIRFLOW_CTX_EXECUTION_DATE=2024-12-01T15:49:59.696862+00:00
+AIRFLOW_CTX_TRY_NUMBER=1
+AIRFLOW_CTX_DAG_RUN_ID=manual__2024-12-01T15:49:59.696862+00:00
+[2024-12-01T15:50:16.729+0000] {warnings.py:110} WARNING - /home/***/.local/lib/python3.7/site-packages/***/utils/email.py:152: RemovedInAirflow3Warning: Fetching SMTP credentials from configuration variables will be deprecated in a future release. Please set credentials using a connection instead.
+  send_mime_email(e_from=mail_from, e_to=recipients, mime_msg=msg, conn_id=conn_id, dryrun=dryrun)
+
+[2024-12-01T15:50:16.729+0000] {configuration.py:663} WARNING - section/key [smtp/smtp_user] not found in config
+[2024-12-01T15:50:16.729+0000] {email.py:268} INFO - Email alerting: attempt 1
+[2024-12-01T15:50:16.730+0000] {taskinstance.py:1768} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/operators/email.py", line 87, in execute
+    custom_headers=self.custom_headers,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/email.py", line 91, in send_email
+    **kwargs,
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/email.py", line 152, in send_email_smtp
+    send_mime_email(e_from=mail_from, e_to=recipients, mime_msg=msg, conn_id=conn_id, dryrun=dryrun)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/email.py", line 270, in send_mime_email
+    smtp_conn = _get_smtp_connection(smtp_host, smtp_port, smtp_timeout, smtp_ssl)
+  File "/home/airflow/.local/lib/python3.7/site-packages/airflow/utils/email.py", line 317, in _get_smtp_connection
+    else smtplib.SMTP(host=host, port=port, timeout=timeout)
+  File "/usr/local/lib/python3.7/smtplib.py", line 251, in __init__
+    (code, msg) = self.connect(host, port)
+  File "/usr/local/lib/python3.7/smtplib.py", line 336, in connect
+    self.sock = self._get_socket(host, port, self.timeout)
+  File "/usr/local/lib/python3.7/smtplib.py", line 307, in _get_socket
+    self.source_address)
+  File "/usr/local/lib/python3.7/socket.py", line 728, in create_connection
+    raise err
+  File "/usr/local/lib/python3.7/socket.py", line 716, in create_connection
+    sock.connect(sa)
+ConnectionRefusedError: [Errno 111] Connection refused
+[2024-12-01T15:50:16.739+0000] {taskinstance.py:1323} INFO - Marking task as UP_FOR_RETRY. dag_id=email_test, task_id=send_email, execution_date=20241201T154959, start_date=20241201T155016, end_date=20241201T155016
+[2024-12-01T15:50:16.753+0000] {standard_task_runner.py:105} ERROR - Failed to execute job 175 for task send_email ([Errno 111] Connection refused; 456)
+[2024-12-01T15:50:16.793+0000] {local_task_job.py:208} INFO - Task exited with return code 1
+[2024-12-01T15:50:16.813+0000] {taskinstance.py:2578} INFO - 0 downstream tasks scheduled from follow-on schedule check

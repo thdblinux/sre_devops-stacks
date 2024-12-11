@@ -1,0 +1,7 @@
+Id,Produto,Valor
+01,SSD256,300
+02,Notebook,1800
+03,Notebook,2000
+04,SSD128,170
+05,Monitor21,800
+06,Monitor23,1100

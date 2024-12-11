@@ -1,0 +1,20 @@
+pip install schedule
+
+
+import schedule
+import time
+
+def meu_projeto():
+    # Coloque aqui o código do seu projeto que você deseja executar
+
+# Função para agendar a execução do projeto todos os dias às 10 horas
+def agendar_projeto():
+    schedule.every().day.at("10:00").do(meu_projeto)
+
+# Agendar o projeto
+agendar_projeto()
+
+# Loop para manter o programa em execução
+while True:
+    schedule.run_pending()
+    time.sleep(1)
