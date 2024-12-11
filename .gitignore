@@ -1,6 +1,17 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 # Ignorar logs do Airflow
 airflow/**/*.log
+# Ignorar arquivos grandes
+Istio/istio-1.23.0/bin/istioctl
+rabbitmq/app-messenger/myenv/lib/python3.12/site-packages/numpy.libs/libopenblas64_p-r0-0cf96a72.3.23.dev.so
+rabbitmq/app-messenger/myenv/lib/python3.12/site-packages/pyarrow/libarrow.so.1700
+rabbitmq/app-messenger/myenv/lib/python3.12/site-packages/pyspark/jars/rocksdbjni-8.3.2.jar
+airflow/2.Preparando Ambiente/logs/dag_processor_manager/dag_processor_manager.log
+data_engineering_python/03. SQLite/SQLiteStudio-3.4.4-windows-x64-installer.exe
+data_engineering_python/05. SQL Server/SQL Server Material Download.zip
+data_engineering_python/01. Postgree/postgresql-16.1-1-windows-x64.exe
+data_engineering_python/02. MySQL/mysql-installer-community-8.0.36.0.msi
+
 # dependencies
 /node_modules
 /.pnp
