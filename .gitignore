@@ -73,9 +73,14 @@ override.tf.json
 **/*.p12
 **/*.crt
 **/*.jks
-## Airflow log
-Airflow/2.Preparando Ambiente/logs/
+# Arquivos grandes
 *.exe
 *.msi
 *.zip
 *.log
+
+# Diretórios específicos
+data_engineering_python/05.\ SQL\ Server/
+data_engineering_python/01.\ Postgree/
+data_engineering_python/02.\ MySQL/
+Airflow/2.Preparando\ Ambiente/logs/
