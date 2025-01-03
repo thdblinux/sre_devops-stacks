@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-deployment
+  name: nginx-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: nginx-deployment
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment
+    spec:
+      containers:
+        - image: nginx:1.19.2
+          name: nginx
+          resources:
+            limits:
+              cpu: "0.5"
+              memory: 256Mi
+            requests:
+              cpu: 0.25
+              memory: 128Mi
+          livenessProbe: # Aqui é onde vamos adicionar a nossa livenessProbe
+            tcpSocket: # Aqui vamos utilizar o tcpSocket, onde vamos se conectar ao container através do protocolo TCP
+              port: 80 # Qual porta TCP vamos utilizar para se conectar ao container
+            initialDelaySeconds: 10 # Quantos segundos vamos esperar para executar a primeira verificação
+            periodSeconds: 10 # A cada quantos segundos vamos executar a verificação
+            timeoutSeconds: 5 # Quantos segundos vamos esperar para considerar que a verificação falhou
+            failureThreshold: 3 # Quantos falhas consecutivas vamos aceitar antes de reiniciar o container

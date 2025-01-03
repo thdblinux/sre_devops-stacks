@@ -1,0 +1,22 @@
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+  - role: worker
+  - role: worker
+  - role: worker
+# snap install kubectl --classic
+
+# source <(kubectl completion bash) # configura o autocomplete na sua sessão atual (antes, certifique-se de ter instalado o pacote bash-completion).
+
+# Baixe o binário
+# curl -Lo ./kind https://kind.sigs.k8s.io/dl/v0.11.1/kind-linux-amd64
+
+# Dê permissão de execução ao arquivo baixado
+# chmod +x ./kind
+
+# Mova-o para um diretório onde possa ser executado globalmente (por exemplo, /usr/local/bin)
+# sudo mv ./kind /usr/local/bin/kind
+
+# vim meu-primeiro-cluster.yaml
+# kind create cluster --name kind-multinodes --config $HOME/meu-primeiro-cluster.yaml

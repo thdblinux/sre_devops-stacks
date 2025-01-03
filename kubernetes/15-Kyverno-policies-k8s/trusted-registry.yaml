@@ -1,0 +1,20 @@
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: ensure-images-from-trusted-registry
+  namespace: beskar
+spec:
+  validationFailureAction: Enforce
+  rules:
+  - name: trusted-repo-check
+    match:
+      resources:
+        kinds:
+        - Pod
+    validate:
+      message: "Only images from trusted repositories are allowed"
+      pattern:
+        spec:
+          containers:
+          - name: "*"
+            image: "trustedrepo.com/*"

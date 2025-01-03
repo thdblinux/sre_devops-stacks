@@ -1,0 +1,11 @@
+#configuração do email
+AIRFLOW__SMTP__SMTP_HOST: smtp.gmail.com
+AIRFLOW__SMTP__SMTP_USER: seuemail@gmail.com
+AIRFLOW__SMTP__SMTP_PASSWORD: suasenha
+AIRFLOW__SMTP__SMTP_PORT: 587
+AIRFLOW__SMTP__MAIL_FROM: Airflow
+
+
+#reiniciar
+Docker-compose down
+Docker-compose up -d

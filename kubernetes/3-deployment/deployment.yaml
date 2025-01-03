@@ -1,0 +1,76 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nginx-deployment
+  name: nginx-deployment
+  namespace: reload
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: nginx-deployment
+  strategy:
+    type: Recreate
+    # type: RollingUpdate
+    # rollingUpdate:
+    #   maxSurge: 1
+    #   maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: nginx-deployment
+    spec:
+      containers:
+        - image: nginx:1.14.0
+          name: nginx
+          resources:
+            limits:
+              cpu: "0.6"
+              memory: 256Mi
+            requests:
+              cpu: "0.25"
+              memory: 128Mi
+# Tarefas
+# Utilize o arquivo /root/deployment.yaml para realizar o deploy do nosso Deployment;
+# Corrija todos os erros;
+# Configure o limite de utilização de recursos da seguinte maneira:
+# Requests:
+# 64Mi de Memória;
+# 0.5 de CPU;
+# Limits:
+# 128 Mi de Memória;
+# 0.7 de CPU;
+# Use a estratégia de atualização do Deployment que atualiza todos os pods de uma vez;
+# A versão do Nginx deve ser a 1.16.0.
+
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   labels:
+#     app: nginx-girus
+#     opa: sensacional-juvenal
+#   name: nginx-girus
+#   namespace: reload
+# spec:
+#   replicas: 5
+#   selector:
+#     matchLabels:
+#       app: nginx-girus
+#   strategy:
+#     type: Recreate
+#   template:
+#     metadata:
+#       labels:
+#         app: nginx-girus
+#     spec:
+#       containers:
+#       - image: nginx:1.16.0  # Defina a versão do Nginx como 1.16.0
+#         name: nginx
+#         resources:
+#           limits:
+#             cpu: "0.3"
+#             memory: "128Mi"
+#           requests:
+#             cpu: "0.1"
+#             memory: "64Mi"

@@ -1,0 +1,21 @@
+programa {
+  funcao inicio() {
+    // Declarou a variável
+    inteiro nascimento, idade
+
+    // Atribuímos um valor à variável
+    nascimento = 1984
+
+    // Calculando a idade
+    idade = 2020 - nascimento
+
+    // Mostrar a idade na tela
+    escreva("Sua idade será: ", idade)
+
+    // Operações aritméticas:
+    // + soma
+    // - subtração
+    // * multiplicação
+    // / divisão
+  }
+}

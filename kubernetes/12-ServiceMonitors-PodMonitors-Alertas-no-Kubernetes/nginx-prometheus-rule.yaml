@@ -1,0 +1,39 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"monitoring.coreos.com/v1","kind":"PrometheusRule","metadata":{"annotations":{},"labels":{"app.kubernetes.io/name":"kube-prometheus","app.kubernetes.io/part-of":"kube-prometheus","prometheus":"k8s","role":"alert-rules"},"name":"nginx-prometheus-rule","namespace":"monitoring"},"spec":{"groups":[{"name":"nginx-prometheus-rule","rules":[{"alert":"NginxDown","annotations":{"description":"Nginx is down for more than 1 minute. Pod name: {{ $labels.pod }}","summary":"Nginx is down"},"expr":"up{job=\"nginx\"} == 0","for":"1m","labels":{"severity":"critical"}},{"alert":"NginxHighRequestRate","annotations":{"description":"Nginx is receiving high request rate for more than 1 minute. Pod name: {{ $labels.pod }}","summary":"Nginx is receiving high request rate"},"expr":"rate(nginx_http_requests_total{job=\"nginx\"}[5m]) \u003e 10","for":"1m","labels":{"severity":"warning"}}]}]}}
+  creationTimestamp: "2023-03-01T14:14:00Z"
+  generation: 2
+  labels:
+    app.kubernetes.io/name: kube-prometheus
+    app.kubernetes.io/part-of: kube-prometheus
+    prometheus: k8s
+    role: alert-rules
+  name: nginx-prometheus-rule
+  namespace: monitoring
+  resourceVersion: "24923"
+  uid: c0a6914d-9a54-4083-bdf8-ebfb5c19077d
+spec:
+  groups:
+  - name: nginx-prometheus-rule
+    rules:
+    - alert: NginxDown
+      annotations:
+        description: 'Nginx is down for more than 1 minute. Pod name: {{ $labels.pod
+          }}'
+        summary: Nginx is down
+      expr: up{job="nginx"} == 0
+      for: 1m
+      labels:
+        severity: critical
+    - alert: NginxHighRequestRate
+      annotations:
+        description: 'Nginx is receiving high request rate for more than 1 minute.
+          Pod name: {{ $labels.pod }}'
+        summary: Nginx is receiving high request rate
+      expr: rate(nginx_http_requests_total{job="nginx"}[5m]) > 10
+      for: 1m
+      labels:
+        severity: warning

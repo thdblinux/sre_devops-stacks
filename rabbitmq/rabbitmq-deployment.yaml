@@ -1,0 +1,70 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq
+  labels:
+    app: rabbitmq
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rabbitmq
+  template:
+    metadata:
+      labels:
+        app: rabbitmq
+    spec:
+      containers:
+        - name: rabbitmq
+          image: rabbitmq:3-management
+          ports:
+            - containerPort: 5672
+            - containerPort: 15672
+          env:
+            - name: RABBITMQ_DEFAULT_USER
+              value: accessadmin
+            - name: RABBITMQ_DEFAULT_PASS
+              value: 35lkK69gwoF0hGBb
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "512Mi"
+            limits:
+              cpu: "1"
+              memory: "750Mi"
+          volumeMounts:
+            - name: rabbitmq-data
+              mountPath: /var/lib/rabbitmq/
+            - name: rabbitmq-log
+              mountPath: /var/log/rabbitmq
+            - name: integracao-script
+              mountPath: /usr/local/bin/integracao-magaluloja1-cdd.sh
+              subPath: integracao-magaluloja1-cdd.sh
+      volumes:
+        - name: rabbitmq-data
+          hostPath:
+            path: /home/admdesenv/app/rabbit-mq/docker/data/
+        - name: rabbitmq-log
+          hostPath:
+            path: /home/admdesenv/app/rabbit-mq/docker/log/
+        - name: integracao-script
+          hostPath:
+            path: /home/admdesenv/app/rabbit-mq/docker/integracao-magaluloja1-cdd.sh
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rabbitmq
+spec:
+  type: NodePort
+  ports:
+    - port: 5672
+      targetPort: 5672
+      protocol: TCP
+      name: rabbitmq
+    - port: 15672
+      targetPort: 15672
+      protocol: TCP
+      name: rabbitmq-management
+  selector:
+    app: rabbitmq

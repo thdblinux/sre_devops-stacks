@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: nginx-matrix
+    app: matrix-evolution
+  name: nginx-matrix
+spec:
+  containers:
+    - image: nginx
+      name: nginx-matrix
+      volumeMounts:
+        - mountPath: /nginx-matrix
+          name: first-emptydir
+      ports:
+        - containerPort: 80
+      resources:
+        limits:
+          memory: 128Mi
+          cpu: 1   
+        requests:
+          memory: 64Mi
+          cpu: 0.5
+      args: ["slepp", "1800"]
+  dnsPolicy: ClusterFirst
+  restartPolicy: Always
+  volumes:
+    - name: first-emptydir
+      emptyDir:
+        sizeLimit: 256Mi
+
+

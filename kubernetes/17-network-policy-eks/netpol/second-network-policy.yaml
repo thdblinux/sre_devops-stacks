@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: second-policy
+  namespace: beskar
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    # - namespaceSelector: # - or
+    #     matchLabels:
+    #       kubernetes.io/metadata.name: beskar
+    - namespaceSelector: # - and
+        matchExpressions:
+          - key: kubernetes.io/metadata.name
+            operator: In
+            values: ["ingress-nginx", "beskar"]
